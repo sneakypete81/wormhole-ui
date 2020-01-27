@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>250</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Save To</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>33</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>You are being sent a file:</string>
+     </property>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="filename_label">
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>example_filename.ext [128MB]</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="destination_edit">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="browse_button">
+       <property name="text">
+        <string>Browse...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="remember_checkbox">
+     <property name="text">
+      <string>Don't show again for this session</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="button_box">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
