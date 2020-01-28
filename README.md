@@ -21,6 +21,7 @@ The recommended method to run from the Python source is with [pipx](https://pipx
   pipx install wormhole-ui
   wormhole-ui
 ```
+(or use pip if you prefer)
 
 ## Development
 
