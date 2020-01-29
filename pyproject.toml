@@ -30,6 +30,8 @@ humanize = "^0.5.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
+pytest-qt = "^3.3.0"
+pytest-twisted = "^1.12"
 
 pyinstaller = "^3.5"
 pywin32-ctypes = { version = "^0.2.0", platform = "win32" }
