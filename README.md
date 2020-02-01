@@ -29,6 +29,7 @@ Requires [Poetry](https://poetry.eustace.io/).
 
 ```sh
   git clone https://github.com/sneakypete81/wormhole-ui.git
+  cd wormhole-ui
   poetry install
 ```
 
