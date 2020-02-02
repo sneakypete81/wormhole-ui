@@ -1,3 +1,5 @@
+import platform
+
 from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QDialog
 
@@ -13,6 +15,12 @@ class ConnectDialog(UiDialog):
 
         self.set_code_button.clicked.connect(self._on_set_code_button)
         self.quit_button.clicked.connect(self.reject)
+
+        # MacOS requires a 'Quit' button, since there's no native way of closing a
+        # sheet. https://forum.qt.io/topic/27182/solved-qdialog-mac-os-setwindowflags
+        # has another possible solution.
+        if platform.system() != "Darwin":
+            self.quit_button.hide()
 
         wormhole.signals.wormhole_open.connect(self._on_wormhole_open)
         wormhole.signals.code_received.connect(self._on_code_received)
