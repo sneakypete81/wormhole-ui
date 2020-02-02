@@ -1,4 +1,5 @@
 import logging
+import platform
 
 from PySide2.QtCore import Slot
 from PySide2.QtWidgets import (
@@ -15,6 +16,13 @@ from .message_table import MessageTable
 from .save_file_dialog import SaveFileDialog
 from .ui import CustomWidget, load_ui
 
+WIN_STYLESHEET = """
+* {
+    font-family: "Calibri";
+    font-size: 12pt;
+}
+"""
+
 
 class MainWindow(QMainWindow):
     def __init__(self, wormhole):
@@ -24,6 +32,9 @@ class MainWindow(QMainWindow):
             base_instance=self,
             custom_widgets=[CustomWidget(MessageTable, wormhole=wormhole)],
         )
+
+        if platform.system() == "Windows":
+            self.setStyleSheet(WIN_STYLESHEET)
 
         self.wormhole = wormhole
 
