@@ -7,13 +7,13 @@ from PySide2.QtWidgets import (
     QDialog,
     QFileDialog,
     QMainWindow,
-    QMessageBox,
 )
 
 from .connect_dialog import ConnectDialog
 from .errors import get_error_text
 from .message_table import MessageTable
 from .save_file_dialog import SaveFileDialog
+from .shutdown_message import ShutdownMessage
 from .ui import CustomWidget, load_ui
 
 WIN_STYLESHEET = """
@@ -143,12 +143,7 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def _on_wormhole_shutdown_received(self):
-        box = QMessageBox(parent=self)
-        box.setText("The remote computer has closed the connection.")
-        box.setIcon(QMessageBox.Information)
-        box.setStandardButtons(QMessageBox.Close)
-        box.setDefaultButton(QMessageBox.Close)
-        box.exec_()
+        ShutdownMessage(parent=self).exec_()
 
     def _disable_message_entry(self):
         self.message_edit.setDisabled(True)
