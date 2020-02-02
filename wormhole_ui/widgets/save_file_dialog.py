@@ -24,7 +24,8 @@ class SaveFileDialog(UiDialog):
             self.finished.emit(QDialog.Accepted)
             return
 
-        self.filename_label.setText(f"{filename} [{naturalsize(size)}]")
+        truncated_filename = self.truncate(filename)
+        self.filename_label.setText(f"{truncated_filename} [{naturalsize(size)}]")
         super().open()
 
     def get_destination_directory(self):
@@ -37,3 +38,11 @@ class SaveFileDialog(UiDialog):
         )
         if directory != "":
             self.destination_edit.setText(directory)
+
+    @staticmethod
+    def truncate(filename, max_chars=40):
+        if len(filename) <= max_chars:
+            return filename
+
+        stem, suffixes = filename.split(".", maxsplit=1)
+        return stem[:max_chars-3] + "..." + suffixes
