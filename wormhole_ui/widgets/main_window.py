@@ -85,13 +85,13 @@ class MainWindow(QMainWindow):
     @Slot()
     def _on_send_files_button(self):
         dialog = QFileDialog(self, "Send")
-        dialog.setFileMode(QFileDialog.ExistingFile)
-        dialog.fileSelected.connect(self._on_send_files_selected)
+        dialog.setFileMode(QFileDialog.ExistingFiles)
+        dialog.filesSelected.connect(self._on_send_files_selected)
         dialog.open()
 
     @Slot(str)
-    def _on_send_files_selected(self, filepath):
-        if filepath != "":
+    def _on_send_files_selected(self, filepaths):
+        for filepath in filepaths:
             self.message_table.send_file_pending(filepath)
 
     @Slot(int, str)
