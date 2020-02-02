@@ -45,4 +45,4 @@ class SaveFileDialog(UiDialog):
             return filename
 
         stem, suffixes = filename.split(".", maxsplit=1)
-        return stem[:max_chars-3] + "..." + suffixes
+        return stem[: max_chars - 3] + "..." + suffixes
