@@ -36,10 +36,8 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="filename_label">
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-      </font>
+     <property name="styleSheet">
+      <string notr="true">font-size: 18pt</string>
      </property>
      <property name="text">
       <string>example_filename.ext [128MB]</string>
