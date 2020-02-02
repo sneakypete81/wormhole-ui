@@ -11,6 +11,7 @@ class MessageTable(QTableWidget):
     def __init__(self, parent, wormhole):
         super().__init__(parent=parent)
         self.setAcceptDrops(True)
+        self.setFocusPolicy(Qt.NoFocus)
 
         self._send_files_pending = OrderedDict()
         self._wormhole = wormhole
