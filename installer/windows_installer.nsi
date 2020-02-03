@@ -11,6 +11,7 @@
 !define USER_INSTALL_MARKER _user_install_marker
  
 SetCompress off
+Unicode True
 
 !define MULTIUSER_EXECUTIONLEVEL Highest
 !define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
