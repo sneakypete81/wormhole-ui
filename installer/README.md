@@ -18,3 +18,11 @@ This can be done on any platform.
 ```
 
 The installer is written to the `dist` folder.
+
+## MacOS
+
+First build the .app with PyInstaller. This must be done on a MacOS machine.
+
+```sh
+  poetry run pyinstaller installer/macos.spec
+```
