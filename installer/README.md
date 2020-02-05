@@ -21,8 +21,28 @@ The installer is written to the `dist` folder.
 
 ## MacOS
 
-First build the .app with PyInstaller. This must be done on a MacOS machine.
+Set up a High Sierra VM in Virualbox:
+
+  Download the OS installer:
+  https://apps.apple.com/gb/app/macos-high-sierra/id1246284741?mt=12
+
+  Create an ISO:
+  https://www.whatroute.net/installerapp2iso.html
+
+  Setup ssh port forwarding and remote login:
+  https://medium.com/@twister.mr/installing-macos-to-virtualbox-1fcc5cf22801
+
+
+First build the .app with PyInstaller. This must be done on a MacOS machine, ideally an old OS version such as the VM set up above.
 
 ```sh
   poetry run pyinstaller installer/macos.spec
 ```
+
+Then build the installer with dmgbuild.
+
+```sh
+  poetry run dmgbuild -s installer/macos_installer.py . .
+```
+
+The DMG is written to the `dist` folder.

@@ -87,6 +87,15 @@ visualize = ["graphviz (>0.5.1)", "Twisted (>=16.1.1)"]
 
 [[package]]
 category = "dev"
+description = "biplist is a library for reading/writing binary plists."
+marker = "sys_platform == \"darwin\""
+name = "biplist"
+optional = false
+python-versions = "*"
+version = "1.0.3"
+
+[[package]]
+category = "dev"
 description = "The uncompromising code formatter."
 marker = "python_version >= \"3.6\" and python_version < \"4.0\""
 name = "black"
@@ -160,6 +169,32 @@ docstest = ["doc8", "pyenchant (>=1.6.11)", "twine (>=1.12.0)", "sphinxcontrib-s
 idna = ["idna (>=2.1)"]
 pep8test = ["flake8", "flake8-import-order", "pep8-naming"]
 test = ["pytest (>=3.6.0,<3.9.0 || >3.9.0,<3.9.1 || >3.9.1,<3.9.2 || >3.9.2)", "pretend", "iso8601", "pytz", "hypothesis (>=1.11.4,<3.79.2 || >3.79.2)"]
+
+[[package]]
+category = "dev"
+description = "macOS command line utility to build disk images"
+marker = "sys_platform == \"darwin\""
+name = "dmgbuild"
+optional = false
+python-versions = "*"
+version = "1.3.3"
+
+[package.dependencies]
+ds_store = ">=1.1.0"
+mac_alias = ">=2.0.1"
+
+[[package]]
+category = "dev"
+description = "Manipulate Finder .DS_Store files from Python"
+marker = "sys_platform == \"darwin\""
+name = "ds-store"
+optional = false
+python-versions = "*"
+version = "1.1.2"
+
+[package.dependencies]
+biplist = ">=0.6"
+mac_alias = ">=2.0.1"
 
 [[package]]
 category = "dev"
@@ -253,6 +288,15 @@ version = "17.5.0"
 
 [package.extras]
 scripts = ["click (>=6.0)", "twisted (>=16.4.0)"]
+
+[[package]]
+category = "dev"
+description = "Generate/parse Mac OS Alias records from Python"
+marker = "sys_platform == \"darwin\""
+name = "mac-alias"
+optional = false
+python-versions = "*"
+version = "2.0.7"
 
 [[package]]
 category = "dev"
@@ -666,7 +710,7 @@ test = ["zope.event"]
 testing = ["coverage", "nose", "zope.event"]
 
 [metadata]
-content-hash = "73b22f58cfb519df222a901d676aa26c627b3bf939ebb566ce643882b56df45b"
+content-hash = "30d357bcc5dc0676bc23379640a45a508ac33f7faa589d55213badf3a91d5f4b"
 python-versions = "^3.5, <3.9"
 
 [metadata.files]
@@ -693,6 +737,9 @@ autobahn = [
 automat = [
     {file = "Automat-0.8.0-py2.py3-none-any.whl", hash = "sha256:81c93c55d2742c55e74e6497a48e048a859fa01d7aa0b91a032be432229837e2"},
     {file = "Automat-0.8.0.tar.gz", hash = "sha256:269a09dfb063a3b078983f4976d83f0a0d3e6e7aaf8e27d8df1095e09dc4a484"},
+]
+biplist = [
+    {file = "biplist-1.0.3.tar.gz", hash = "sha256:4c0549764c5fe50b28042ec21aa2e14fe1a2224e239a1dae77d9e7f3932aa4c6"},
 ]
 black = [
     {file = "black-19.10b0-py36-none-any.whl", hash = "sha256:1b30e59be925fafc1ee4565e5e08abef6b03fe455102883820fe5ee2e4734e0b"},
@@ -768,6 +815,12 @@ cryptography = [
     {file = "cryptography-2.8-cp38-cp38-win_amd64.whl", hash = "sha256:971221ed40f058f5662a604bd1ae6e4521d84e6cad0b7b170564cc34169c8f13"},
     {file = "cryptography-2.8.tar.gz", hash = "sha256:3cda1f0ed8747339bbdf71b9f38ca74c7b592f24f65cdb3ab3765e4b02871651"},
 ]
+dmgbuild = [
+    {file = "dmgbuild-1.3.3.tar.gz", hash = "sha256:2004a3a304bd29ac541af990a2b1d531b82c49f9465dbbf33e5b30efc48b620d"},
+]
+ds-store = [
+    {file = "ds_store-1.1.2.tar.gz", hash = "sha256:f569659cfd66b21273c5a2405d5e1e0f54fddebf627130329f01404f271a074c"},
+]
 entrypoints = [
     {file = "entrypoints-0.3-py2.py3-none-any.whl", hash = "sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19"},
     {file = "entrypoints-0.3.tar.gz", hash = "sha256:c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"},
@@ -800,6 +853,9 @@ importlib-metadata = [
 incremental = [
     {file = "incremental-17.5.0-py2.py3-none-any.whl", hash = "sha256:717e12246dddf231a349175f48d74d93e2897244939173b01974ab6661406b9f"},
     {file = "incremental-17.5.0.tar.gz", hash = "sha256:7b751696aaf36eebfab537e458929e194460051ccad279c72b755a167eebd4b3"},
+]
+mac-alias = [
+    {file = "mac_alias-2.0.7.tar.gz", hash = "sha256:c485e3eb9d600208cc0aa906282f0d575a535395306289bcdb4096599189e223"},
 ]
 macholib = [
     {file = "macholib-1.14-py2.py3-none-any.whl", hash = "sha256:c500f02867515e6c60a27875b408920d18332ddf96b4035ef03beddd782d4281"},
