@@ -3,6 +3,20 @@ name = "wormhole-ui"
 version = "0.1.2"
 description = "UI for Magic Wormhole - get things from one computer to another safely"
 authors = ["sneakypete81 <sneakypete81@gmail.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+repository = "https://github.com/sneakypete81/wormhole-ui"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: MacOS X",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications :: Qt",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Topic :: Security :: Cryptography",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+]
 
 [tool.poetry.scripts]
 wormhole-ui = 'wormhole_ui.main:run'
