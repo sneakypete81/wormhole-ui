@@ -1,5 +1,15 @@
 # Installers
 
+## Release Procedure
+
+* Update `CHANGELOG.md`
+* Update version in `pyproject.toml` and `wormhole_ui/__init__.py`.
+* Build installers (see below)
+* Test installers
+* Commit, tag and push
+* Publish to PyPI with `poetry publish`
+* Create a release on Github, including the changelog and installers
+
 ## Windows
 First build the executable with PyInstaller. This must be done on a Windows machine.
 
@@ -14,7 +24,7 @@ Then build the installer with [NSIS](https://nsis.sourceforge.io) v3.05.
 This can be done on any platform.
 
 ```sh
-  makensis /DPRODUCT_VERSION=0.1.0 installer/windows_installer.nsi
+  makensis -DPRODUCT_VERSION=0.1.0 installer/windows_installer.nsi
 ```
 
 The installer is written to the `dist` folder.
