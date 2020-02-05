@@ -10,7 +10,7 @@ A GUI for the [Magic Wormhole](https://github.com/warner/magic-wormhole/). Get t
 Download the [Windows installer](https://github.com/sneakypete81/wormhole-ui/releases/latest/download/Magic.Wormhole.Installer.exe).
 
 ### MacOS
-Installer coming soon...
+Download the [MacOS installer](https://github.com/sneakypete81/wormhole-ui/releases/latest/download/Magic.Wormhole.Installer.dmg).
 
 ### Linux
 Installer coming soon...
