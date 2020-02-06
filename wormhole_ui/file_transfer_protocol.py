@@ -74,7 +74,7 @@ class FileTransferProtocol(QObject):
             self._signals.wormhole_shutdown.emit()
         else:
             if self._is_wormhole_connected and self._peer_supports_connect_mode():
-                self.send_command("shutdown")
+                self._send_command("shutdown")
 
             self._wormhole_delegate.shutdown()
             self.close()
@@ -113,7 +113,7 @@ class FileTransferProtocol(QObject):
     def send_message(self, message):
         self._send_data({"offer": {"message": message}})
 
-    def send_command(self, command):
+    def _send_command(self, command):
         self._send_data({"command": command})
 
     def send_file(self, id, file_path):
