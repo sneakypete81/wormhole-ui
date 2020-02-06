@@ -126,7 +126,7 @@ class FileTransferProtocol(QObject):
         return self._transit.sender.is_sending_file
 
     def is_receiving_file(self):
-        return self._transit.sender.is_receiving_file
+        return self._transit.receiver.is_receiving_file
 
     def _send_data(self, data):
         assert isinstance(data, dict)
