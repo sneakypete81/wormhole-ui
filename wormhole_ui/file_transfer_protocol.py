@@ -103,8 +103,8 @@ class FileTransferProtocol(QObject):
         self._send_data({"error": str(exception)})
         if isinstance(exception, RefusedError):
             self.close()
-            return
-        self._signals.error.emit(exception, traceback)
+        else:
+            self._signals.error.emit(exception, traceback)
 
     def _peer_supports_connect_mode(self):
         if "v0" not in self._peer_versions:
