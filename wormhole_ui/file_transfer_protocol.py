@@ -217,7 +217,7 @@ class WormholeDelegate:
         try:
             self._message_handler(data)
         except RespondError as exception:
-            self._signals.respond_error.emit(exception.cause, traceback.format.exc())
+            self._signals.respond_error.emit(exception.cause, traceback.format_exc())
         except Exception as exception:
             self._signals.error.emit(exception, traceback.format_exc())
 
