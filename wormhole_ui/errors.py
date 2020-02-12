@@ -33,6 +33,12 @@ class ReceiveFileError(WormholeGuiError):
     pass
 
 
+class MessageError(WormholeGuiError):
+    """Invalid message received"""
+
+    pass
+
+
 class OfferError(WormholeGuiError):
     """Invalid offer received"""
 

@@ -8,6 +8,7 @@ from wormhole.cli import public_relay
 from wormhole.errors import LonelyError
 
 from .errors import (
+    MessageError,
     RefusedError,
     RemoteError,
     RespondError,
@@ -134,7 +135,12 @@ class FileTransferProtocol(QObject):
         self._wormhole.send_message(json.dumps(data).encode("utf-8"))
 
     def _handle_message(self, data_bytes):
-        data = json.loads(data_bytes.decode("utf-8"))
+        try:
+            data_string = data_bytes.decode("utf-8")
+            data = json.loads(data_string)
+        except json.JSONDecodeError:
+            raise MessageError(f"Invalid message received: {data_string}")
+
         if "error" in data:
             raise RemoteError(data["error"])
 
