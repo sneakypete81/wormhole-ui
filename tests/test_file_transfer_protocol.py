@@ -452,6 +452,7 @@ class TestHandleMessage(TestBase):
 
 class TestWormholeDelegate(TestBase):
     """Most of this functionality is tested elsewhere"""
+
     def test_got_code_emits_signal(self):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
