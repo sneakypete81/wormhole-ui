@@ -1,4 +1,5 @@
-from .transit_protocol import TransitProtocolReceiver, TransitProtocolSender
+from .transit_protocol_sender import TransitProtocolSender
+from .transit_protocol_receiver import TransitProtocolReceiver
 
 
 class TransitProtocolPair:
