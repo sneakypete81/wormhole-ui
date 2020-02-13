@@ -178,9 +178,9 @@ class TestSendFile(TestBase):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        ftp.send_file(42, "path/to/file")
+        ftp.send_file(mock.sentinel.SourceFile)
 
-        self.transit.sender.send_file.assert_called_with(42, "path/to/file")
+        self.transit.sender.send_file.assert_called_with(mock.sentinel.SourceFile)
 
     def test_is_sending_file_calls_transit(self):
         ftp = FileTransferProtocol(self.reactor, self.signals)

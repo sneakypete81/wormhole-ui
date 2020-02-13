@@ -2,7 +2,6 @@ from binascii import hexlify
 import hashlib
 import json
 import logging
-from pathlib import Path
 
 import twisted.internet
 from twisted.internet import defer
@@ -31,12 +30,12 @@ class TransitProtocolSender(TransitProtocolBase):
         self.awaiting_transit_response = False
         self.is_sending_file = False
 
-    def send_file(self, id, file_path):
+    def send_file(self, source_file):
         logging.debug("TransitProtocolSender::send_file")
         assert not self.is_sending_file
         self.is_sending_file = True
 
-        self._source = SourceFile(id, file_path)
+        self._source = source_file
         self._source.open()
 
         if not self._transit_handshake_complete:
@@ -125,23 +124,3 @@ class TransitProtocolSender(TransitProtocolBase):
             self._send_transit_deferred.cancel()
         if self._transfer_file_deferred is not None:
             self._transfer_file_deferred.cancel()
-
-
-class SourceFile:
-    def __init__(self, id, file_path):
-        file_path = Path(file_path).resolve()
-        assert file_path.exists()
-
-        self.id = id
-        self.name = file_path.name
-        self.full_path = file_path
-        self.final_bytes = None
-        self.transfer_bytes = None
-        self.file_object = None
-
-    def open(self):
-        self.file_object = f = open(self.full_path, "rb")
-        f.seek(0, 2)
-        self.final_bytes = f.tell()
-        self.transfer_bytes = self.final_bytes
-        f.seek(0, 0)

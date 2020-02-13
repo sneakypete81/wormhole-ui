@@ -117,8 +117,8 @@ class FileTransferProtocol(QObject):
     def _send_command(self, command):
         self._send_data({"command": command})
 
-    def send_file(self, id, file_path):
-        self._transit.sender.send_file(id, file_path)
+    def send_file(self, source_file):
+        self._transit.sender.send_file(source_file)
 
     def receive_file(self, id, dest_path):
         self._transit.receiver.receive_file(id, dest_path)
