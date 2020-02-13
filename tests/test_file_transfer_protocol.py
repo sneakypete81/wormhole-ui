@@ -17,7 +17,7 @@ from wormhole_ui.errors import (
 
 class TestBase:
     @pytest.fixture(autouse=True)
-    def patch_wormhole(self, mocker):
+    def setup(self, mocker):
         wormhole = mocker.patch("wormhole_ui.file_transfer_protocol.wormhole")
         self.wormhole = wormhole.create()
         self.wormhole_create = wormhole.create
