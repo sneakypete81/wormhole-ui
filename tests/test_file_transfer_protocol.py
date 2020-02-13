@@ -1,5 +1,3 @@
-from unittest import mock
-
 from hamcrest import assert_that, is_, starts_with
 import pytest
 
@@ -34,7 +32,7 @@ class TestBase:
 
 
 class TestOpen(TestBase):
-    def test_creates_a_wormhole(self):
+    def test_creates_a_wormhole(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
         ftp.open(None)
 
@@ -42,7 +40,7 @@ class TestOpen(TestBase):
             appid="lothar.com/wormhole/text-or-file-xfer",
             relay_url="ws://relay.magic-wormhole.io:4000/v1",
             reactor=self.reactor,
-            delegate=mock.ANY,
+            delegate=mocker.ANY,
             versions={"v0": {"mode": "connect"}},
         )
 
@@ -174,21 +172,21 @@ class TestSendMessage(TestBase):
 
 
 class TestSendFile(TestBase):
-    def test_calls_transit(self):
+    def test_calls_transit(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        ftp.send_file(mock.sentinel.SourceFile)
+        ftp.send_file(mocker.sentinel.SourceFile)
 
-        self.transit.sender.send_file.assert_called_with(mock.sentinel.SourceFile)
+        self.transit.sender.send_file.assert_called_with(mocker.sentinel.SourceFile)
 
-    def test_is_sending_file_calls_transit(self):
+    def test_is_sending_file_calls_transit(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        self.transit.sender.is_sending_file = mock.sentinel.value
+        self.transit.sender.is_sending_file = mocker.sentinel.value
 
-        assert_that(ftp.is_sending_file(), is_(mock.sentinel.value))
+        assert_that(ftp.is_sending_file(), is_(mocker.sentinel.value))
 
 
 class TestReceiveFile(TestBase):
@@ -200,13 +198,13 @@ class TestReceiveFile(TestBase):
 
         self.transit.receiver.receive_file.assert_called_with(42, "path/to/file")
 
-    def test_is_receiving_file_calls_transit(self):
+    def test_is_receiving_file_calls_transit(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        self.transit.receiver.is_receiving_file = mock.sentinel.value
+        self.transit.receiver.is_receiving_file = mocker.sentinel.value
 
-        assert_that(ftp.is_receiving_file(), is_(mock.sentinel.value))
+        assert_that(ftp.is_receiving_file(), is_(mocker.sentinel.value))
 
     def test_wormhole_closed_after_receiving_file_if_connect_mode_not_supported(self):
         ftp = FileTransferProtocol(self.reactor, self.signals)
@@ -325,9 +323,9 @@ class TestHandleMessage(TestBase):
 
         self.transit.receiver.handle_offer.assert_called_with({"file": "test"})
 
-    def test_file_offer_emits_receive_pending(self):
+    def test_file_offer_emits_receive_pending(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
-        dest = mock.Mock()
+        dest = mocker.Mock()
         dest.name = "filename"
         dest.final_bytes = 24000
         self.transit.receiver.handle_offer.return_value = dest
