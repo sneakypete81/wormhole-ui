@@ -1,7 +1,6 @@
 from hamcrest import assert_that, is_, starts_with
 import pytest
 
-from wormhole_ui.file_transfer_protocol import FileTransferProtocol
 from wormhole_ui.errors import (
     MessageError,
     OfferError,
@@ -11,6 +10,7 @@ from wormhole_ui.errors import (
     SendFileError,
     SendTextError,
 )
+from wormhole_ui.file_transfer_protocol import FileTransferProtocol
 
 
 class TestBase:
@@ -176,15 +176,15 @@ class TestSendFile(TestBase):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        ftp.send_file(mocker.sentinel.SourceFile)
+        ftp.send_file(42, "test_file")
 
-        self.transit.sender.send_file.assert_called_with(mocker.sentinel.SourceFile)
+        self.transit.send_file.assert_called_with(42, "test_file")
 
     def test_is_sending_file_calls_transit(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        self.transit.sender.is_sending_file = mocker.sentinel.value
+        self.transit.is_sending_file = mocker.sentinel.value
 
         assert_that(ftp.is_sending_file(), is_(mocker.sentinel.value))
 
@@ -409,7 +409,7 @@ class TestHandleMessage(TestBase):
         ftp.open(None)
         ftp._wormhole_delegate.wormhole_got_message(b'{"answer": {"file_ack": "ok"}}')
 
-        self.transit.sender.handle_file_ack.assert_called()
+        self.transit.handle_file_ack.assert_called_once()
         self.signals.error.emit.assert_not_called()
 
     def test_file_ack_with_error_emits_error(self):
