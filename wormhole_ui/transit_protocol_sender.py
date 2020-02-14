@@ -116,6 +116,8 @@ class TransitProtocolSender(TransitProtocolBase):
         self._delegate.transit_complete(self._source.id, self._source.name)
 
     def close(self):
+        self._transit_handshake_complete = False
+        self.awaiting_transit_response = False
         self.is_sending_file = False
 
         if self._pipe is not None:
