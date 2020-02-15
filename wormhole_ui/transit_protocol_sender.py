@@ -1,17 +1,14 @@
-from binascii import hexlify
-import hashlib
 import json
 import logging
 
-import twisted.internet
 from twisted.internet import defer
-import twisted.protocols
 from wormhole.cli import public_relay
 from wormhole.transit import TransitSender
 
 from .transit_protocol_base import TransitProtocolBase
 from .errors import SendFileError
 from .progress import Progress
+from .file_sender import FileSender
 
 
 class TransitProtocolSender(TransitProtocolBase):
@@ -21,10 +18,10 @@ class TransitProtocolSender(TransitProtocolBase):
         )
         super().__init__(wormhole, delegate, transit)
 
+        self._file_sender = FileSender(transit)
         self._send_transit_deferred = None
         self._transfer_file_deferred = None
         self._source = None
-        self._pipe = None
 
         self._transit_handshake_complete = False
         self.awaiting_transit_response = False
@@ -76,32 +73,15 @@ class TransitProtocolSender(TransitProtocolBase):
 
     @defer.inlineCallbacks
     def _transfer_file(self):
-        if self._pipe is None:
-            self._pipe = yield self._transit.connect()
-
-        logging.info(f"Sending ({self._pipe.describe()})..")
-
-        sender = twisted.protocols.basic.FileSender()
-        hasher = hashlib.sha256()
         progress = Progress(
             self._delegate, self._source.id, self._source.transfer_bytes
         )
 
-        def _update(data):
-            hasher.update(data)
-            progress.update(len(data))
-            return data
-
-        if self._source.final_bytes > 0:
-            yield sender.beginFileTransfer(
-                self._source.file_object, self._pipe, transform=_update
-            )
-
-        expected_hash = hexlify(hasher.digest()).decode("ascii")
-
+        yield self._file_sender.open()
+        expected_hash = yield self._file_sender.send(self._source, progress)
         logging.info("File sent, awaiting confirmation")
+        ack_bytes = yield self._file_sender.wait_for_ack()
 
-        ack_bytes = yield self._pipe.receive_record()
         self.is_sending_file = False
 
         ack = json.loads(ack_bytes.decode("utf-8"))
@@ -120,8 +100,7 @@ class TransitProtocolSender(TransitProtocolBase):
         self.awaiting_transit_response = False
         self.is_sending_file = False
 
-        if self._pipe is not None:
-            self._pipe.close()
+        self._file_sender.close()
         if self._send_transit_deferred is not None:
             self._send_transit_deferred.cancel()
         if self._transfer_file_deferred is not None:
