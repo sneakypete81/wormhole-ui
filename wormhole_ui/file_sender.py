@@ -1,10 +1,13 @@
 from binascii import hexlify
 import hashlib
+import json
 import logging
 
 import twisted.internet
 from twisted.internet import defer
 import twisted.protocols
+
+from .errors import SendFileError
 
 
 class FileSender:
@@ -42,4 +45,10 @@ class FileSender:
     @defer.inlineCallbacks
     def wait_for_ack(self):
         ack_bytes = yield self._pipe.receive_record()
-        return ack_bytes
+        ack = json.loads(ack_bytes.decode("utf-8"))
+
+        ok = ack.get("ack", "")
+        if ok != "ok":
+            raise SendFileError(f"Transfer failed: {ack}")
+
+        return ack.get("sha256", None)

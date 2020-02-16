@@ -5,7 +5,6 @@ from twisted.internet.defer import CancelledError
 
 from .errors import RefusedError, RespondError
 from .file_transfer_protocol import FileTransferProtocol
-from .source_file import SourceFile
 
 
 class WormholeSignals(QObject):
@@ -58,7 +57,7 @@ class WormholeController:
 
     @Slot(str, str)
     def send_file(self, id, file_path):
-        self._capture_errors(self._protocol.send_file, SourceFile(id, file_path))
+        self._capture_errors(self._protocol.send_file, id, file_path)
 
     @Slot(str, str)
     def receive_file(self, id, dest_path):

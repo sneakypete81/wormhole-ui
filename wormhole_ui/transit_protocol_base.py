@@ -10,9 +10,15 @@ class TransitProtocolBase:
         self._delegate = delegate
         self._transit = transit
 
+        self._send_transit_deferred = None
+
     def handle_transit(self, transit_message):
         self._add_hints(transit_message)
         self._derive_key()
+
+    def send_transit(self):
+        self._send_transit_deferred = self._send_transit()
+        self._send_transit_deferred.addErrback(self._on_deferred_error)
 
     @defer.inlineCallbacks
     def _send_transit(self):
@@ -47,3 +53,8 @@ class TransitProtocolBase:
             exception=failure.value,
             traceback=failure.getTraceback(elideFrameworkCode=True),
         )
+        return failure
+
+    def close(self):
+        if self._send_transit_deferred is not None:
+            self._send_transit_deferred.cancel()
