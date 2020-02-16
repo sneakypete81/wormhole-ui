@@ -117,14 +117,14 @@ class FileTransferProtocol(QObject):
     def _send_command(self, command):
         self._send_data({"command": command})
 
-    def send_file(self, source_file):
-        self._transit.sender.send_file(source_file)
+    def send_file(self, id, file_path):
+        self._transit.send_file(id, file_path)
 
     def receive_file(self, id, dest_path):
         self._transit.receiver.receive_file(id, dest_path)
 
     def is_sending_file(self):
-        return self._transit.sender.is_sending_file
+        return self._transit.is_sending_file
 
     def is_receiving_file(self):
         return self._transit.receiver.is_receiving_file
@@ -167,7 +167,7 @@ class FileTransferProtocol(QObject):
             elif key == "answer" and "file_ack" in contents:
                 result = contents["file_ack"]
                 if result == "ok":
-                    self._transit.sender.handle_file_ack()
+                    self._transit.handle_file_ack()
                 else:
                     raise SendFileError(result)
 

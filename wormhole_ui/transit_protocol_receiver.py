@@ -40,8 +40,7 @@ class TransitProtocolReceiver(TransitProtocolBase):
             self._transit_handshake_complete = True
             super().handle_transit(transit_message)
 
-        self._send_transit_deferred = self._send_transit()
-        self._send_transit_deferred.addErrback(self._on_deferred_error)
+        self.send_transit()
 
     def handle_offer(self, offer):
         assert not self.is_receiving_file
