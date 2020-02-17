@@ -1,6 +1,3 @@
-from binascii import hexlify
-import hashlib
-import json
 import logging
 
 from twisted.internet import defer
@@ -10,9 +7,9 @@ from wormhole.transit import TransitReceiver
 from .transit_protocol_base import TransitProtocolBase
 from .errors import (
     OfferError,
-    ReceiveFileError,
     RespondError,
 )
+from .file_receiver import FileReceiver
 from .progress import Progress
 
 
@@ -23,9 +20,9 @@ class TransitProtocolReceiver(TransitProtocolBase):
         )
         super().__init__(wormhole, delegate, transit)
 
+        self._file_receiver = FileReceiver(transit)
         self._send_transit_deferred = None
         self._receive_file_deferred = None
-        self._pipe = None
 
     def handle_offer(self, offer):
         if "file" not in offer:
@@ -42,44 +39,21 @@ class TransitProtocolReceiver(TransitProtocolBase):
 
     @defer.inlineCallbacks
     def _receive_file(self, dest_file):
-        if self._pipe is None:
-            self._pipe = yield self._transit.connect()
+        progress = Progress(self._delegate, dest_file.id, dest_file.transfer_bytes)
 
-        datahash = yield self._transfer_data(self._pipe, dest_file)
+        yield self._file_receiver.open()
+        datahash = yield self._file_receiver.receive(dest_file, progress)
+
         dest_file.finalise()
-        yield self._close_transit(self._pipe, datahash)
+        yield self._file_receiver.send_ack(datahash)
 
         logging.info("File received, transfer complete")
         self._delegate.transit_complete(dest_file.id, dest_file.name)
 
-    @defer.inlineCallbacks
-    def _transfer_data(self, pipe, dest_file):
-        hasher = hashlib.sha256()
-        progress = Progress(self._delegate, dest_file.id, dest_file.transfer_bytes)
-        received = yield pipe.writeToFile(
-            dest_file.file_object,
-            dest_file.transfer_bytes,
-            progress=progress.update,
-            hasher=hasher.update,
-        )
-        datahash = hasher.digest()
-
-        if received < dest_file.transfer_bytes:
-            raise ReceiveFileError("Connection dropped before full file received")
-        assert received == dest_file.transfer_bytes
-        return datahash
-
-    @defer.inlineCallbacks
-    def _close_transit(self, pipe, datahash):
-        datahash_hex = hexlify(datahash).decode("ascii")
-        ack = {"ack": "ok", "sha256": datahash_hex}
-        ack_bytes = json.dumps(ack).encode("utf-8")
-
-        yield pipe.send_record(ack_bytes)
-
     def close(self):
-        if self._pipe is not None:
-            self._pipe.close()
+        super().close()
+
+        self._file_receiver.close()
         if self._send_transit_deferred is not None:
             self._send_transit_deferred.cancel()
         if self._receive_file_deferred is not None:
