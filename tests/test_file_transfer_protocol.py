@@ -196,13 +196,13 @@ class TestReceiveFile(TestBase):
         ftp.open(None)
         ftp.receive_file(42, "path/to/file")
 
-        self.transit.receiver.receive_file.assert_called_with(42, "path/to/file")
+        self.transit.receive_file.assert_called_with(42, "path/to/file")
 
     def test_is_receiving_file_calls_transit(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
 
         ftp.open(None)
-        self.transit.receiver.is_receiving_file = mocker.sentinel.value
+        self.transit.is_receiving_file = mocker.sentinel.value
 
         assert_that(ftp.is_receiving_file(), is_(mocker.sentinel.value))
 
@@ -321,14 +321,14 @@ class TestHandleMessage(TestBase):
         ftp.open(None)
         ftp._wormhole_delegate.wormhole_got_message(b'{"offer": {"file": "test"}}')
 
-        self.transit.receiver.handle_offer.assert_called_with({"file": "test"})
+        self.transit.handle_offer.assert_called_with({"file": "test"})
 
     def test_file_offer_emits_receive_pending(self, mocker):
         ftp = FileTransferProtocol(self.reactor, self.signals)
         dest = mocker.Mock()
         dest.name = "filename"
         dest.final_bytes = 24000
-        self.transit.receiver.handle_offer.return_value = dest
+        self.transit.handle_offer.return_value = dest
 
         ftp.open(None)
         ftp._wormhole_delegate.wormhole_got_message(b'{"offer": {"file": "test"}}')
@@ -337,7 +337,7 @@ class TestHandleMessage(TestBase):
 
     def test_invalid_offer_emits_respond_error(self):
         ftp = FileTransferProtocol(self.reactor, self.signals)
-        self.transit.receiver.handle_offer.side_effect = RespondError("test")
+        self.transit.handle_offer.side_effect = RespondError("test")
 
         ftp.open(None)
         ftp._wormhole_delegate.wormhole_got_message(b'{"offer": "illegal"}')

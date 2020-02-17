@@ -121,13 +121,13 @@ class FileTransferProtocol(QObject):
         self._transit.send_file(id, file_path)
 
     def receive_file(self, id, dest_path):
-        self._transit.receiver.receive_file(id, dest_path)
+        self._transit.receive_file(id, dest_path)
 
     def is_sending_file(self):
         return self._transit.is_sending_file
 
     def is_receiving_file(self):
-        return self._transit.receiver.is_receiving_file
+        return self._transit.is_receiving_file
 
     def _send_data(self, data):
         assert isinstance(data, dict)
@@ -181,8 +181,10 @@ class FileTransferProtocol(QObject):
             if not self._peer_supports_connect_mode():
                 self.close()
         else:
-            dest = self._transit.receiver.handle_offer(offer)
-            self._signals.file_receive_pending.emit(dest.name, dest.final_bytes)
+            dest_file = self._transit.handle_offer(offer)
+            self._signals.file_receive_pending.emit(
+                dest_file.name, dest_file.final_bytes
+            )
 
 
 class WormholeDelegate:
