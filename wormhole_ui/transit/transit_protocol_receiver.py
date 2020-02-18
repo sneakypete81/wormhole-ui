@@ -5,7 +5,7 @@ from wormhole.cli import public_relay
 from wormhole.transit import TransitReceiver
 
 from .transit_protocol_base import TransitProtocolBase
-from .errors import (
+from ..errors import (
     OfferError,
     RespondError,
 )

@@ -3,17 +3,17 @@ import pytest
 from twisted.internet import defer
 
 from wormhole_ui.errors import SendFileError
-from wormhole_ui.transit_protocol_sender import TransitProtocolSender
+from wormhole_ui.transit.transit_protocol_sender import TransitProtocolSender
 
 
 class TestBase:
     @pytest.fixture(autouse=True)
     def setup(self, mocker):
         self.transit = mocker.patch(
-            "wormhole_ui.transit_protocol_sender.TransitSender"
+            "wormhole_ui.transit.transit_protocol_sender.TransitSender"
         )()
         self.file_sender = mocker.patch(
-            "wormhole_ui.transit_protocol_sender.FileSender"
+            "wormhole_ui.transit.transit_protocol_sender.FileSender"
         )()
         self.wormhole = mocker.Mock()
         self.delegate = mocker.Mock()
