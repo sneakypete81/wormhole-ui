@@ -16,7 +16,7 @@ from .errors import (
     SendTextError,
 )
 from .timeout import Timeout
-from .transit_protocol_pair import TransitProtocolPair
+from .transit import TransitProtocolPair
 
 TIMEOUT_SECONDS = 2
 APPID = "lothar.com/wormhole/text-or-file-xfer"

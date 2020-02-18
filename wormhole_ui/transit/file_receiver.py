@@ -4,7 +4,7 @@ import json
 
 from twisted.internet import defer
 
-from .errors import ReceiveFileError
+from ..errors import ReceiveFileError
 
 
 class FileReceiver:

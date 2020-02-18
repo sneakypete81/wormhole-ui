@@ -4,7 +4,7 @@ from twisted.internet import defer
 from wormhole.cli import public_relay
 from wormhole.transit import TransitSender
 
-from .errors import SendFileError
+from ..errors import SendFileError
 from .file_sender import FileSender
 from .progress import Progress
 from .transit_protocol_base import TransitProtocolBase
