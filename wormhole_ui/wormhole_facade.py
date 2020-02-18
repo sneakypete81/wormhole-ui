@@ -23,7 +23,7 @@ class WormholeSignals(QObject):
     respond_error = Signal(Exception, str)
 
 
-class WormholeController:
+class WormholeFacade:
     def __init__(self, reactor):
         super().__init__()
         self.signals = WormholeSignals()
