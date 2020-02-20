@@ -31,6 +31,7 @@ humanize = "^0.5.1"
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
 pytest-cov = "^2.8.1"
+pytest-mock = "^2.0.0"
 pytest-qt = "^3.3.0"
 pytest-twisted = "^1.12"
 
