@@ -1,5 +1,6 @@
-/.vscode/
+/.coverage
 /.python-version
+/.vscode/
 /*.egg-info/
 /build/
 /dist/
