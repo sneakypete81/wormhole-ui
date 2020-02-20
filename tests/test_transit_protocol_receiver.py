@@ -69,9 +69,12 @@ class TestSendTransit(TestBase):
 class TestHandleOffer(TestBase):
     def test_offer_is_parsed(self, mocker):
         transit_receiver = TransitProtocolReceiver(None, self.wormhole, None)
-        result = transit_receiver.handle_offer({"file": "test_file"})
+        result = transit_receiver.handle_offer(
+            {"file": {"filename": "test_file", "filesize": 42}}
+        )
 
-        assert_that(result, is_("test_file"))
+        assert_that(result.name, is_("test_file"))
+        assert_that(result.final_bytes, is_(42))
 
     def test_invalid_offer_raises_exception(self, mocker):
         transit_receiver = TransitProtocolReceiver(None, self.wormhole, None)

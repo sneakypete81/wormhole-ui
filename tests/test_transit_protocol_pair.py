@@ -16,9 +16,6 @@ class TestBase:
         self.source_file = mocker.patch(
             "wormhole_ui.transit.transit_protocol_pair.SourceFile"
         )()
-        self.dest_file = mocker.patch(
-            "wormhole_ui.transit.transit_protocol_pair.DestFile"
-        )()
 
 
 class TestSendFile(TestBase):
@@ -128,24 +125,28 @@ class TestHandleOffer(TestBase):
 
         self.receiver.handle_offer.assert_called_once_with("offer")
 
-    def test_returns_dest_file(self):
+    def test_returns_dest_file(self, mocker):
+        dest_file = mocker.Mock()
+        self.receiver.handle_offer.return_value = dest_file
         transit = TransitProtocolPair(None, None, None)
         transit.handle_transit("transit")
 
         result = transit.handle_offer("offer")
 
-        assert_that(result, is_(self.dest_file))
+        assert_that(result, is_(dest_file))
 
 
 class TestReceiveFile(TestBase):
     def test_file_is_received(self, mocker):
+        dest_file = mocker.Mock()
+        self.receiver.handle_offer.return_value = dest_file
         transit = TransitProtocolPair(None, None, None)
         transit.handle_transit("transit")
         transit.handle_offer("offer")
 
         transit.receive_file(13, "test_file")
 
-        self.receiver.receive_file.assert_called_once_with(self.dest_file, mocker.ANY)
+        self.receiver.receive_file.assert_called_once_with(dest_file, mocker.ANY)
 
 
 class TestIsSendingFile(TestBase):

@@ -1,6 +1,5 @@
 import logging
 
-from .dest_file import DestFile
 from .source_file import SourceFile
 from .transit_protocol_sender import TransitProtocolSender
 from .transit_protocol_receiver import TransitProtocolReceiver
@@ -72,8 +71,7 @@ class TransitProtocolPair:
         logging.debug("TransitProtocolPair::handle_offer")
         assert not self.is_receiving_file
 
-        filename = self._receiver.handle_offer(offer)
-        self._dest_file = DestFile(filename)
+        self._dest_file = self._receiver.handle_offer(offer)
         return self._dest_file
 
     def receive_file(self, id, dest_path):
