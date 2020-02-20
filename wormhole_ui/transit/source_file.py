@@ -14,8 +14,8 @@ class SourceFile:
         self.file_object = None
 
     def open(self):
-        self.file_object = f = open(self.full_path, "rb")
-        f.seek(0, 2)
-        self.final_bytes = f.tell()
+        self.file_object = open(self.full_path, "rb")
+        self.file_object.seek(0, 2)
+        self.final_bytes = self.file_object.tell()
         self.transfer_bytes = self.final_bytes
-        f.seek(0, 0)
+        self.file_object.seek(0, 0)
