@@ -4,6 +4,9 @@ A GUI for the [Magic Wormhole](https://github.com/warner/magic-wormhole/). Get t
 
 ![Screenshot](docs/media/screenshot.png)
 
+[![PyPI](https://img.shields.io/pypi/v/wormhole-ui.svg)](https://pypi.python.org/pypi/wormhole-ui)
+[![Build Status](https://travis-ci.com/sneakypete81/wormhole-ui.svg?branch=master)](https://travis-ci.com/sneakypete81/wormhole-ui)
+
 ## Installation
 
 ### Windows
