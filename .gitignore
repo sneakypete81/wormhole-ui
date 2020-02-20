@@ -1,5 +1,6 @@
 /.coverage
 /.python-version
+/.tox/
 /.vscode/
 /*.egg-info/
 /build/
