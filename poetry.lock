@@ -76,10 +76,10 @@ description = "Self-service finite-state machines for the programmer on the go."
 name = "automat"
 optional = false
 python-versions = "*"
-version = "0.8.0"
+version = "20.2.0"
 
 [package.dependencies]
-attrs = ">=16.1.0"
+attrs = ">=19.2.0"
 six = "*"
 
 [package.extras]
@@ -808,8 +808,8 @@ autobahn = [
     {file = "autobahn-19.11.1.tar.gz", hash = "sha256:201b9879b49c6e259d4126dbafe9e3c73807de0c242d50065fbebc62c6ccb181"},
 ]
 automat = [
-    {file = "Automat-0.8.0-py2.py3-none-any.whl", hash = "sha256:81c93c55d2742c55e74e6497a48e048a859fa01d7aa0b91a032be432229837e2"},
-    {file = "Automat-0.8.0.tar.gz", hash = "sha256:269a09dfb063a3b078983f4976d83f0a0d3e6e7aaf8e27d8df1095e09dc4a484"},
+    {file = "Automat-20.2.0-py2.py3-none-any.whl", hash = "sha256:b6feb6455337df834f6c9962d6ccf771515b7d939bca142b29c20c2376bc6111"},
+    {file = "Automat-20.2.0.tar.gz", hash = "sha256:7979803c74610e11ef0c0d68a2942b152df52da55336e0c9d58daf1831cbdf33"},
 ]
 biplist = [
     {file = "biplist-1.0.3.tar.gz", hash = "sha256:4c0549764c5fe50b28042ec21aa2e14fe1a2224e239a1dae77d9e7f3932aa4c6"},
