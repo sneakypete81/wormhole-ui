@@ -1,7 +1,7 @@
 from hamcrest import assert_that, calling, is_, raises
 
 from wormhole_ui.errors import RespondError
-from wormhole_ui.transit.dest_file import DestFile
+from wormhole_ui.protocol.transit.dest_file import DestFile
 
 
 class TestDestFile:

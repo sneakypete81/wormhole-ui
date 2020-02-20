@@ -3,7 +3,7 @@ from pathlib import Path
 from hamcrest import assert_that, is_, ends_with
 import pytest
 
-from wormhole_ui.transit.source_file import SourceFile
+from wormhole_ui.protocol.transit.source_file import SourceFile
 
 
 @pytest.fixture
