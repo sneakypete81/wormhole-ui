@@ -4,13 +4,14 @@ from twisted.internet import defer
 from wormhole.cli import public_relay
 from wormhole.transit import TransitReceiver
 
-from .transit_protocol_base import TransitProtocolBase
+from .dest_file import DestFile
 from ..errors import (
     OfferError,
     RespondError,
 )
 from .file_receiver import FileReceiver
 from .progress import Progress
+from .transit_protocol_base import TransitProtocolBase
 
 
 class TransitProtocolReceiver(TransitProtocolBase):
@@ -28,7 +29,9 @@ class TransitProtocolReceiver(TransitProtocolBase):
         if "file" not in offer:
             raise RespondError(OfferError(f"Unknown offer: {offer}"))
 
-        return offer["file"]
+        filename = offer["file"]["filename"]
+        filesize = offer["file"]["filesize"]
+        return DestFile(filename, filesize)
 
     def receive_file(self, dest_file, receive_finished_handler):
         self._send_data({"answer": {"file_ack": "ok"}})

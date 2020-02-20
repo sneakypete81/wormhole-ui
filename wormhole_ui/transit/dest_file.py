@@ -5,13 +5,13 @@ from ..errors import DiskSpaceError, RespondError
 
 
 class DestFile:
-    def __init__(self, file_offer):
+    def __init__(self, filename, filesize):
         self.id = None
         # Path().name is intended to protect us against
         # "~/.ssh/authorized_keys" and other attacks
-        self.name = Path(file_offer["filename"]).name
+        self.name = Path(filename).name
         self.full_path = None
-        self.final_bytes = file_offer["filesize"]
+        self.final_bytes = filesize
         self.transfer_bytes = self.final_bytes
         self.file_object = None
         self._temp_path = None
