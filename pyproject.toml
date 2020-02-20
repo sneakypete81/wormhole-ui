@@ -41,8 +41,9 @@ pefile = { version = "^2019.4.18", platform = "win32" }
 macholib = { version = "^1.13", platform = "darwin" }
 dmgbuild = { version = "^1.3.3", platform = "darwin" }
 
-flake8 = "^3.7.9"
 black = { version = "^19.10b0", python = "^3.6" }
+flake8 = "^3.7.9"
+tox = "^3.14.5"
 
 [build-system]
 requires = ["poetry>=0.12"]

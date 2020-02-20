@@ -40,5 +40,5 @@ Then you can use the following:
   poetry run pytest       # Run unit tests
   poetry run flake8       # Run the linter
   poetry run black .      # Run the code autoformatter
-  # poetry run tox        # Run all checks across all supported Python versions (TODO)
+  poetry run tox          # Run all checks across all supported Python versions
 ```
