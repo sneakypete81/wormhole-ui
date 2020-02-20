@@ -1,20 +1,20 @@
 from hamcrest import assert_that, is_
 import pytest
 
-from wormhole_ui.transit.transit_protocol_pair import TransitProtocolPair
+from wormhole_ui.protocol.transit.transit_protocol_pair import TransitProtocolPair
 
 
 class TestBase:
     @pytest.fixture(autouse=True)
     def setup(self, mocker):
         self.sender = mocker.patch(
-            "wormhole_ui.transit.transit_protocol_pair.TransitProtocolSender"
+            "wormhole_ui.protocol.transit.transit_protocol_pair.TransitProtocolSender"
         )()
         self.receiver = mocker.patch(
-            "wormhole_ui.transit.transit_protocol_pair.TransitProtocolReceiver"
+            "wormhole_ui.protocol.transit.transit_protocol_pair.TransitProtocolReceiver"
         )()
         self.source_file = mocker.patch(
-            "wormhole_ui.transit.transit_protocol_pair.SourceFile"
+            "wormhole_ui.protocol.transit.transit_protocol_pair.SourceFile"
         )()
 
 

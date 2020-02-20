@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from ..errors import DiskSpaceError, RespondError
+from ...errors import DiskSpaceError, RespondError
 
 
 class DestFile:

@@ -18,14 +18,14 @@ QApplication([])
 qt5reactor.install()
 
 from .widgets.main_window import MainWindow  # noqa: E402
-from .wormhole_facade import WormholeFacade  # noqa: E402
+from .protocol import WormholeProtocol  # noqa: E402
 
 
 def run():
     logging.basicConfig(level=logging.INFO)
 
     reactor = twisted.internet.reactor
-    wormhole = WormholeFacade(reactor)
+    wormhole = WormholeProtocol(reactor)
     main_window = MainWindow(wormhole)
     main_window.run()
 

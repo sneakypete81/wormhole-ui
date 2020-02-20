@@ -7,7 +7,7 @@ import wormhole
 from wormhole.cli import public_relay
 from wormhole.errors import LonelyError
 
-from .errors import (
+from ..errors import (
     MessageError,
     RefusedError,
     RemoteError,

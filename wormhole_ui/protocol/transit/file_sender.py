@@ -7,7 +7,7 @@ import twisted.internet
 from twisted.internet import defer
 import twisted.protocols
 
-from ..errors import SendFileError
+from ...errors import SendFileError
 
 
 class FileSender:

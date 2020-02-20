@@ -3,7 +3,7 @@ import traceback
 from PySide2.QtCore import QObject, Signal, Slot
 from twisted.internet.defer import CancelledError
 
-from .errors import RefusedError, RespondError
+from ..errors import RefusedError, RespondError
 from .file_transfer_protocol import FileTransferProtocol
 
 
@@ -23,7 +23,7 @@ class WormholeSignals(QObject):
     respond_error = Signal(Exception, str)
 
 
-class WormholeFacade:
+class WormholeProtocol:
     def __init__(self, reactor):
         super().__init__()
         self.signals = WormholeSignals()

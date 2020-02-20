@@ -10,18 +10,18 @@ from wormhole_ui.errors import (
     SendFileError,
     SendTextError,
 )
-from wormhole_ui.file_transfer_protocol import FileTransferProtocol
+from wormhole_ui.protocol.file_transfer_protocol import FileTransferProtocol
 
 
 class TestBase:
     @pytest.fixture(autouse=True)
     def setup(self, mocker):
-        wormhole = mocker.patch("wormhole_ui.file_transfer_protocol.wormhole")
+        wormhole = mocker.patch("wormhole_ui.protocol.file_transfer_protocol.wormhole")
         self.wormhole = wormhole.create()
         self.wormhole_create = wormhole.create
 
         self.transit = mocker.patch(
-            "wormhole_ui.file_transfer_protocol.TransitProtocolPair"
+            "wormhole_ui.protocol.file_transfer_protocol.TransitProtocolPair"
         )()
 
         self.reactor = mocker.Mock()
