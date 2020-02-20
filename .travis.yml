@@ -1,0 +1,29 @@
+# Config file for automatic testing at travis-ci.org
+
+dist: xenial
+language: python
+python:
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+
+install: pip install tox-travis poetry # codecov
+
+script: tox
+
+# after_success: codecov
+
+jobs:
+  include:
+    - stage: deploy
+      script: poetry publish --build --username sneakypete81 --password $PYPI_PASS
+
+stages:
+  - test
+  - name: deploy
+    if: tag IS present AND repo = sneakypete81/wormhole-ui
+
+env:
+  global:
+  - secure: "Bs+atULrcCLANMXXApC7P/lT/qdv4vf6y1Kxgx1ULrxuhcTiHDy2NFNQ2pQmQgyrWaNFl073ta/eRLYvBas7fYU1iYEzdNyyrq3KbmNW/rXntX69/6I2t9U5Dw70Uae9EL/3Zxz0liRp9Tc7M0pOu96v9k/0JLViO93qLp8mzB91jFTBcALyynuxdQPwikuJIjRdCWQW0TES9HBkWc5A2ZITQ/KqrExSL4DmTyQuDTNGr9iJ4U2fCJP+HfdBTzZNIPF8M/6mShY67EmjHiSb1S4fh3McvT5Sba2dq5+94AyKTKpSwd/tWYZRu9IvmiUcdKy4IqRmWSF9n3Z5Ukk3MeYk0qsgtKdIHSsunKf5koXo6pavKcqgspJMWC51sdlwmOKA8v5VCKQ83HaWPtoAXaD7D1qI/cRgJSLK8qpOU3+WJCDAWiRY1BI77eAjOB/eKWnsQrUi7GQvA3UlAFU2CyOZh8hcdCWQdlObaKi9Yoq6NHzqKgC99u3rMv+yOpkoyjYkR9ALaPWQ0Tp4dn+szriWXAk8ObqLsyBZTMpY3w1WD+0ZXvtFfWsbPBaSEmtP5YCP1/tmCXXBQkXcNkdQIw1szfCqU8icH/iAl1RTVi/Mr5P1rBCr3qN+MstxnIfbcpUd7GiU9x1Bt1vF0gUQbhNUrkxp0k967bhK+maPLl0="
