@@ -22,7 +22,7 @@ classifiers = [
 wormhole-ui = 'wormhole_ui.main:run'
 
 [tool.poetry.dependencies]
-python = "^3.5, <3.9"
+python = "^3.6, <3.9"
 magic_wormhole = "^0.11.2"
 PySide2 = "5.13.1"
 qt5reactor = "^0.6"
