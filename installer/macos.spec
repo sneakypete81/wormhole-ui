@@ -37,7 +37,7 @@ coll = COLLECT(exe,
                name='Magic Wormhole')
 app = BUNDLE(coll,
              name='Magic Wormhole.app',
-#              icon='glossyorb.ico',
+             icon='icons/wormhole.icns',
              bundle_identifier=None,
              info_plist={
                  'NSPrincipalClass': 'NSApplication',

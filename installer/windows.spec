@@ -30,7 +30,8 @@ exe = EXE(pyz,
           upx=False,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=False )
+          console=False,
+          icon='icons/wormhole.ico' )
 
 # Settings without --onefile
 #exe = EXE(pyz,
@@ -42,7 +43,8 @@ exe = EXE(pyz,
 #          bootloader_ignore_signals=False,
 #          strip=False,
 #          upx=False,
-#          console=False )
+#          console=False,
+#          icon='icons/wormhole.ico' )
 #coll = COLLECT(exe,
 #               a.binaries,
 #               a.zipfiles,
