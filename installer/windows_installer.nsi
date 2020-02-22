@@ -5,7 +5,7 @@
 !define GUID "{2AA73AEC-43E8-42F3-8B75-A03DEC543AD0}"
 
 !define INSTALLER_NAME "${PRODUCT_NAME} Installer.exe"
-!define PRODUCT_ICON "glossyorb.ico"
+!define PRODUCT_ICON "wormhole.ico"
 
 ; Marker file to tell the uninstaller that it's a user installation
 !define USER_INSTALL_MARKER _user_install_marker
@@ -23,8 +23,8 @@ Unicode True
 ; Modern UI installer stuff 
 !include "MUI2.nsh"
 !define MUI_ABORTWARNING
-!define MUI_ICON "${PRODUCT_ICON}"
-!define MUI_UNICON "${PRODUCT_ICON}"
+!define MUI_ICON "icons\${PRODUCT_ICON}"
+!define MUI_UNICON "icons\${PRODUCT_ICON}"
 
 ; UI pages
 !insertmacro MUI_PAGE_WELCOME
@@ -35,7 +35,7 @@ Unicode True
 !insertmacro MUI_LANGUAGE "English"
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "../dist/${INSTALLER_NAME}"
+OutFile "..\dist\${INSTALLER_NAME}"
 
 
 Section -SETTINGS
@@ -56,7 +56,7 @@ Section "!${PRODUCT_NAME}" sec_app
   ; Copy program files
   SetOutPath "$INSTDIR"
   File "..\dist\${PRODUCT_NAME}.exe"
-  File "${PRODUCT_ICON}"
+  File "icons\${PRODUCT_ICON}"
 
   ; Marker file for per-user install
   StrCmp $MultiUser.InstallMode CurrentUser 0 +3
