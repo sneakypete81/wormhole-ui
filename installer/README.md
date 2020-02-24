@@ -14,7 +14,8 @@
 First build the executable with PyInstaller. This must be done on a Windows machine.
 
 ```sh
-  poetry run pyinstaller installer/windows.spec
+  poetry install
+  poetry run pyinstaller installer/windows.spec --clean
 ```
 
 This currently builds a --onefile bundle, since otherwise there's a proliferation of
@@ -45,16 +46,16 @@ Set up a High Sierra VM in Virualbox:
 To copy files in and out of the VM:
 
 ```sh
-  rsync wormhole-ui sneakypete81@127.0.0.1:~/Projects/ --rsh='ssh -p2222' -r -v --exclude=".git" --exclude=".tox" --exclude="build" --exclude="dist"
+  rsync ~/Projects/wormhole-ui sneakypete81@127.0.0.1:~/Projects/ --rsh='ssh -p2222' -r -v --exclude=".git" --exclude=".tox" --exclude="build" --exclude="dist"
 
-  scp -P 2222 -r sneakypete81@127.0.0.1:~/Projects/wormhole-ui/dist/* wormhole-ui/dist
-
+  scp -P 2222 -r sneakypete81@127.0.0.1:~/Projects/wormhole-ui/dist/* ~/Projects/wormhole-ui/dist
 ```
 
 First build the .app with PyInstaller. This must be done on a MacOS machine, ideally an old OS version such as the VM set up above.
 
 ```sh
-  poetry run pyinstaller installer/macos.spec
+  poetry install
+  poetry run pyinstaller installer/macos.spec --clean
 ```
 
 Then build the installer with dmgbuild.
