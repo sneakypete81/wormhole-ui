@@ -5,6 +5,5 @@
 /*.egg-info/
 /build/
 /dist/
-/installer/icons/.build/
 .DS_Store
 __pycache__/
