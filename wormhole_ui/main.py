@@ -1,11 +1,12 @@
 import logging
 import sys
 
-from PySide2 import QtCore
+from PySide2 import QtCore, QtGui
 from PySide2.QtWidgets import QApplication
 import qt5reactor
 import twisted.internet
 
+from .util import get_icon_path
 
 # fix for pyinstaller packages app to avoid ReactorAlreadyInstalledError
 # See https://github.com/kivy/kivy/issues/4182 and
@@ -23,6 +24,7 @@ from .protocol import WormholeProtocol  # noqa: E402
 
 def run():
     logging.basicConfig(level=logging.INFO)
+    QApplication.setWindowIcon(QtGui.QIcon(get_icon_path()))
 
     reactor = twisted.internet.reactor
     wormhole = WormholeProtocol(reactor)

@@ -24,3 +24,10 @@ def get_download_path():
             return None
     else:
         return Path.home() / "Downloads"
+
+
+def get_icon_path():
+    if os.name == "darwin":
+        return "installer/icons/wormhole.icns"
+    else:
+        return "installer/icons/wormhole.ico"

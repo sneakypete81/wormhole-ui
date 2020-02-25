@@ -3,7 +3,7 @@ from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QDialog, QFileDialog
 
 from .ui_dialog import UiDialog
-from .util import get_download_path_or_cwd
+from ..util import get_download_path_or_cwd
 
 
 class SaveFileDialog(UiDialog):
