@@ -6,7 +6,10 @@ block_cipher = None
 a = Analysis(['../scripts/run.py'],
              pathex=[],
              binaries=[],
-             datas=[('../wormhole_ui/widgets/ui/*.ui', 'wormhole_ui/widgets/ui')],
+             datas=[
+                 ('../wormhole_ui/widgets/ui/*.ui', 'wormhole_ui/widgets/ui'),
+                 ('../wormhole_ui/resources/*', 'wormhole_ui/resources'),
+             ],
              hiddenimports=['PySide2.QtXml'],
              hookspath=[],
              runtime_hooks=[],
