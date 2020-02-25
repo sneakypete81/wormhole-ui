@@ -6,6 +6,7 @@
 
 !define INSTALLER_NAME "${PRODUCT_NAME} Installer.exe"
 !define PRODUCT_ICON "wormhole.ico"
+!define PRODUCT_ICON_PATH "..\wormhole_ui\resources\${PRODUCT_ICON}"
 
 ; Marker file to tell the uninstaller that it's a user installation
 !define USER_INSTALL_MARKER _user_install_marker
@@ -23,8 +24,8 @@ Unicode True
 ; Modern UI installer stuff 
 !include "MUI2.nsh"
 !define MUI_ABORTWARNING
-!define MUI_ICON "icons\${PRODUCT_ICON}"
-!define MUI_UNICON "icons\${PRODUCT_ICON}"
+!define MUI_ICON "${PRODUCT_ICON_PATH}"
+!define MUI_UNICON "${PRODUCT_ICON_PATH}"
 
 ; UI pages
 !insertmacro MUI_PAGE_WELCOME
@@ -56,7 +57,7 @@ Section "!${PRODUCT_NAME}" sec_app
   ; Copy program files
   SetOutPath "$INSTDIR"
   File "..\dist\${PRODUCT_NAME}.exe"
-  File "icons\${PRODUCT_ICON}"
+  File "${PRODUCT_ICON_PATH}"
 
   ; Marker file for per-user install
   StrCmp $MultiUser.InstallMode CurrentUser 0 +3
