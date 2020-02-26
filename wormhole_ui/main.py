@@ -8,11 +8,15 @@ import twisted.internet
 
 from .util import get_icon_path
 
-# fix for pyinstaller packages app to avoid ReactorAlreadyInstalledError
+# Fix for pyinstaller packages app to avoid ReactorAlreadyInstalledError
 # See https://github.com/kivy/kivy/issues/4182 and
 # https://github.com/pyinstaller/pyinstaller/issues/3390
 if "twisted.internet.reactor" in sys.modules:
     del sys.modules["twisted.internet.reactor"]
+
+# Importing readline (in the wormhole dependency) after initialising QApplication
+# causes segfault in Ubuntu. Importing it here to workaround this.
+import readline  # noqa: F401, E402
 
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
 QApplication([])
