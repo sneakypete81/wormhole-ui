@@ -2,7 +2,17 @@ from collections import OrderedDict
 from pathlib import Path
 
 from PySide2.QtCore import Qt, Signal
-from PySide2.QtWidgets import QHeaderView, QProgressBar, QTableWidget, QTableWidgetItem
+from PySide2.QtWidgets import (
+    QHeaderView,
+    QHBoxLayout,
+    QProgressBar,
+    QTableWidget,
+    QTableWidgetItem,
+    QWidget,
+)
+from PySide2.QtSvg import QSvgWidget
+
+from ..util import RESOURCES_PATH
 
 ICON_COLUMN = 0
 TEXT_COLUMN = 1
@@ -61,6 +71,7 @@ class MessageTable(QTableWidget):
 
     def transfer_complete(self, id, filename):
         self.item(id, TEXT_COLUMN).transfer_complete(filename)
+        self._draw_icon(id, "check.svg")
 
         if not self._wormhole.is_sending_file():
             self._send_next_file()
@@ -85,6 +96,20 @@ class MessageTable(QTableWidget):
             self.setCellWidget(id, ICON_COLUMN, bar)
 
         self.cellWidget(id, ICON_COLUMN).setValue(percent)
+
+    def _draw_icon(self, id, svg_filename):
+        svg = QSvgWidget(str(RESOURCES_PATH / svg_filename))
+        height = self.cellWidget(id, ICON_COLUMN).size().height()
+        svg.setFixedSize(height, height)
+
+        container = QWidget()
+        layout = QHBoxLayout(container)
+        layout.addWidget(svg)
+        layout.setAlignment(Qt.AlignCenter)
+        layout.setContentsMargins(0, 0, 0, 0)
+        container.setLayout(layout)
+
+        self.setCellWidget(id, ICON_COLUMN, container)
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
