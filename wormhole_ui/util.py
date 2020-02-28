@@ -3,7 +3,7 @@ from pathlib import Path
 
 SHELL_FOLDERS = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders"
 DOWNLOADS_GUID = "{374DE290-123F-4565-9164-39C4925E467B}"
-RESOURCES_DIR = Path(__file__).parent / "resources"
+RESOURCES_PATH = Path(__file__).parent / "resources"
 
 
 def get_download_path_or_cwd():
@@ -29,6 +29,6 @@ def get_download_path():
 
 def get_icon_path():
     if os.name == "darwin":
-        return str(RESOURCES_DIR / "wormhole.icns")
+        return str(RESOURCES_PATH / "wormhole.icns")
     else:
-        return str(RESOURCES_DIR / "wormhole.ico")
+        return str(RESOURCES_PATH / "wormhole.ico")
