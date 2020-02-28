@@ -4,6 +4,10 @@ from pathlib import Path
 from PySide2.QtCore import Qt, Signal
 from PySide2.QtWidgets import QHeaderView, QProgressBar, QTableWidget, QTableWidgetItem
 
+ICON_COLUMN = 0
+TEXT_COLUMN = 1
+ICON_COLUMN_WIDTH = 32
+
 
 class MessageTable(QTableWidget):
     send_file = Signal(int, str)
@@ -21,8 +25,9 @@ class MessageTable(QTableWidget):
     def _setup_columns(self):
         self.setColumnCount(2)
         header = self.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(ICON_COLUMN, QHeaderView.Fixed)
+        header.setSectionResizeMode(TEXT_COLUMN, QHeaderView.Stretch)
+        header.resizeSection(ICON_COLUMN, ICON_COLUMN_WIDTH)
 
     def add_sent_message(self, message):
         self._append_item(SendItem(f"You: {message}"))
@@ -47,21 +52,15 @@ class MessageTable(QTableWidget):
         return id
 
     def transfer_progress(self, id, transferred_bytes, total_bytes):
-        if not isinstance(self.cellWidget(id, 0), QProgressBar):
-            bar = QProgressBar()
-            bar.setTextVisible(False)
-            bar.setMaximumWidth(32)
-            self.setCellWidget(id, 0, bar)
-
         if total_bytes == 0:
             percent = 100
         else:
             percent = (100 * transferred_bytes) // total_bytes
 
-        self.cellWidget(id, 0).setValue(percent)
+        self._draw_progress(id, percent)
 
     def transfer_complete(self, id, filename):
-        self.item(id, 1).transfer_complete(filename)
+        self.item(id, TEXT_COLUMN).transfer_complete(filename)
 
         if not self._wormhole.is_sending_file():
             self._send_next_file()
@@ -69,15 +68,23 @@ class MessageTable(QTableWidget):
     def _send_next_file(self):
         if self._send_files_pending:
             id, filepath = self._send_files_pending.popitem(last=False)
-            self.item(id, 1).transfer_started()
+            self.item(id, TEXT_COLUMN).transfer_started()
             self.send_file.emit(id, filepath)
 
     def _append_item(self, item):
         item.setFlags(Qt.ItemIsEnabled)
         id = self.rowCount()
         self.insertRow(id)
-        self.setItem(id, 1, item)
+        self.setItem(id, TEXT_COLUMN, item)
         self.resizeRowsToContents()
+
+    def _draw_progress(self, id, percent):
+        if not isinstance(self.cellWidget(id, ICON_COLUMN), QProgressBar):
+            bar = QProgressBar()
+            bar.setTextVisible(False)
+            self.setCellWidget(id, ICON_COLUMN, bar)
+
+        self.cellWidget(id, ICON_COLUMN).setValue(percent)
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
