@@ -138,6 +138,8 @@ class MainWindow(QMainWindow):
         if traceback:
             logging.error(f"Traceback: {traceback}")
 
+        self.message_table.transfers_failed()
+
         self.error_label.setText(get_error_text(exception))
         self.error_label.show()
 

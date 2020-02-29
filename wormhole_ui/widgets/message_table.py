@@ -77,6 +77,13 @@ class MessageTable(QTableWidget):
         if not self._wormhole.is_sending_file():
             self._send_next_file()
 
+    def transfers_failed(self):
+        for id in range(self.rowCount()):
+            item = self.item(id, TEXT_COLUMN)
+            if item.in_progress:
+                item.transfer_failed()
+                self._draw_icon(id, "times.svg")
+
     def _send_next_file(self):
         if self._send_files_pending:
             id, filepath = self._send_files_pending.popitem(last=False)
@@ -91,12 +98,13 @@ class MessageTable(QTableWidget):
         self.resizeRowsToContents()
 
     def _draw_progress(self, id, percent):
-        if not isinstance(self.cellWidget(id, ICON_COLUMN), QProgressBar):
+        if self.cellWidget(id, ICON_COLUMN) is None:
             bar = QProgressBar()
             bar.setTextVisible(False)
             self.setCellWidget(id, ICON_COLUMN, bar)
 
-        self.cellWidget(id, ICON_COLUMN).setValue(percent)
+        if isinstance(self.cellWidget(id, ICON_COLUMN), QProgressBar):
+            self.cellWidget(id, ICON_COLUMN).setValue(percent)
 
     def _draw_icon(self, id, svg_filename):
         svg = QSvgWidget(str(RESOURCES_PATH / svg_filename))
@@ -167,6 +175,10 @@ class ReceiveFile(ReceiveItem):
         self._filename = filename
         self.setText(f"Received {filename}")
 
+    def transfer_failed(self):
+        self.in_progress = False
+        self.setText(f"Failed to receive {self._filename}")
+
 
 class SendFile(SendItem):
     def __init__(self, filename):
@@ -182,3 +194,7 @@ class SendFile(SendItem):
         self.in_progress = False
         self._filename = filename
         self.setText(f"Sent {filename}")
+
+    def transfer_failed(self):
+        self.in_progress = False
+        self.setText(f"Failed to send {self._filename}")
