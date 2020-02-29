@@ -40,7 +40,7 @@ class MessageTable(QTableWidget):
         header.resizeSection(ICON_COLUMN, ICON_COLUMN_WIDTH)
 
     def add_sent_message(self, message):
-        self._append_item(SendItem(f"You: {message}"))
+        self._append_item(SendItem(message))
 
     def add_received_message(self, message):
         self._append_item(ReceiveItem(message))
@@ -57,7 +57,9 @@ class MessageTable(QTableWidget):
 
     def receiving_file(self, filepath):
         id = self.rowCount()
-        self._append_item(ReceiveFile(Path(filepath).name))
+        item = ReceiveFile(Path(filepath).name)
+        item.transfer_started()
+        self._append_item(item)
 
         return id
 
@@ -66,7 +68,6 @@ class MessageTable(QTableWidget):
             percent = 100
         else:
             percent = (100 * transferred_bytes) // total_bytes
-
         self._draw_progress(id, percent)
 
     def transfer_complete(self, id, filename):
@@ -136,12 +137,15 @@ class MessageTable(QTableWidget):
 
 
 class ReceiveItem(QTableWidgetItem):
-    pass
+    def __init__(self, message):
+        super().__init__(f"Sent: {message}")
+        self.in_progress = False
 
 
 class SendItem(QTableWidgetItem):
     def __init__(self, message):
         super().__init__(message)
+        self.in_progress = False
 
         font = self.font()
         font.setItalic(True)
@@ -150,22 +154,31 @@ class SendItem(QTableWidgetItem):
 
 class ReceiveFile(ReceiveItem):
     def __init__(self, filename):
+        self.in_progress = False
         self._filename = filename
-        super().__init__(f"Receiving {self._filename}...")
+        super().__init__(f"Queued {self._filename}...")
+
+    def transfer_started(self):
+        self.in_progress = True
+        self.setText(f"Receiving {self._filename}...")
 
     def transfer_complete(self, filename):
+        self.in_progress = False
         self._filename = filename
         self.setText(f"Received {filename}")
 
 
 class SendFile(SendItem):
     def __init__(self, filename):
+        self.in_progress = False
         self._filename = filename
         super().__init__(f"Queued {self._filename}...")
 
     def transfer_started(self):
+        self.in_progress = True
         self.setText(f"Sending {self._filename}...")
 
     def transfer_complete(self, filename):
+        self.in_progress = False
         self._filename = filename
         self.setText(f"Sent {filename}")
