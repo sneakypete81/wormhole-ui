@@ -81,8 +81,9 @@ class TransitProtocolPair:
 
         def on_receive_finished():
             self.is_receiving_file = False
-            self._dest_file.cleanup()
-            self._dest_file = None
+            if self._dest_file is not None:
+                self._dest_file.cleanup()
+                self._dest_file = None
 
         self._dest_file.open(id, dest_path)
         self._receiver.receive_file(self._dest_file, on_receive_finished)
