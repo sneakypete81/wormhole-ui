@@ -4,6 +4,7 @@ from twisted.internet import defer
 
 from wormhole_ui.errors import SendFileError
 from wormhole_ui.protocol.transit.transit_protocol_sender import TransitProtocolSender
+from wormhole_ui.protocol.transit.source import SourceFile
 
 
 class TestBase:
@@ -68,7 +69,7 @@ class TestHandleTransit(TestBase):
 
 class TestSendOffer(TestBase):
     def test_offer_is_sent(self, mocker):
-        source_file = mocker.Mock(final_bytes=42)
+        source_file = mocker.Mock(spec=SourceFile, final_bytes=42)
         source_file.name = "test_file"
 
         transit_sender = TransitProtocolSender(None, self.wormhole, None)
