@@ -49,6 +49,7 @@ class MessageTable(QTableWidget):
         id = self.rowCount()
         self._send_files_pending[id] = filepath
         self._append_item(SendFile(Path(filepath).name))
+        self._draw_progress(id, 0)
 
         if not self._wormhole.is_sending_file():
             self._send_next_file()
@@ -60,6 +61,7 @@ class MessageTable(QTableWidget):
         item = ReceiveFile(Path(filepath).name)
         item.transfer_started()
         self._append_item(item)
+        self._draw_progress(id, 0)
 
         return id
 
