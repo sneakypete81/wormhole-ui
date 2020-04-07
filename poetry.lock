@@ -378,7 +378,7 @@ description = "Securely transfer data between computers"
 name = "magic-wormhole"
 optional = false
 python-versions = "*"
-version = "0.11.2"
+version = "0.12.0"
 
 [package.dependencies]
 attrs = ">=16.3.0"
@@ -403,6 +403,7 @@ version = ">=17.5.0"
 
 [package.extras]
 dev = ["mock", "tox", "pyflakes", "magic-wormhole-transit-relay (0.1.2)", "magic-wormhole-mailbox-server (0.3.1)"]
+dilate = ["noiseprotocol"]
 
 [[package]]
 category = "dev"
@@ -897,7 +898,7 @@ test = ["zope.event"]
 testing = ["coverage", "nose", "zope.event"]
 
 [metadata]
-content-hash = "ec627ed931a2119d292fb1b1aa4d8a2e86435e7bdc93261a8b61e8b2c01c1ca5"
+content-hash = "656ed4284a3e37bb0402c44565d43480d5d3688cb4e3c4a5220f6dfc0af2fd78"
 python-versions = "^3.6, <3.8"
 
 [metadata.files]
@@ -1122,8 +1123,8 @@ macholib = [
     {file = "macholib-1.14.tar.gz", hash = "sha256:0c436bc847e7b1d9bda0560351bf76d7caf930fb585a828d13608839ef42c432"},
 ]
 magic-wormhole = [
-    {file = "magic-wormhole-0.11.2.tar.gz", hash = "sha256:ae79667bdbb39fba7d315e36718db383651b45421813366cfaceb069e222d905"},
-    {file = "magic_wormhole-0.11.2-py2.py3-none-any.whl", hash = "sha256:40184aac0ea1b978726a509156400754d3c7a89da0724a8cf90df87d73217193"},
+    {file = "magic-wormhole-0.12.0.tar.gz", hash = "sha256:1b0fd8a334da978f3dd96b620fa9b9348cabedf26a87f74baac7a37052928160"},
+    {file = "magic_wormhole-0.12.0-py2.py3-none-any.whl", hash = "sha256:7c9a8d2a6e89314878dda23efc14c78398f1b6eb80e6c86c895c001c888d086e"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},

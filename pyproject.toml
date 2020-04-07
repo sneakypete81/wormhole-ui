@@ -23,7 +23,7 @@ wormhole-ui = 'wormhole_ui.main:run'
 
 [tool.poetry.dependencies]
 python = "^3.6, <3.8"  # Some dependencies don't support Py3.8 yet
-magic_wormhole = "^0.11.2"
+magic_wormhole = ">=0.11.2,<0.13.0"
 PySide2 = "5.13.1"  # Locked to avoid MacOS build issue https://github.com/pyinstaller/pyinstaller/issues/4627
 qt5reactor = "^0.6"
 humanize = ">=0.5.1,<2.4.0"
