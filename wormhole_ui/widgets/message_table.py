@@ -103,6 +103,8 @@ class MessageTable(QTableWidget):
         if self.cellWidget(id, ICON_COLUMN) is None:
             bar = QProgressBar()
             bar.setTextVisible(False)
+            bar.setFixedSize(ICON_COLUMN_WIDTH, self.rowHeight(id))
+
             self.setCellWidget(id, ICON_COLUMN, bar)
 
         if isinstance(self.cellWidget(id, ICON_COLUMN), QProgressBar):
