@@ -40,7 +40,7 @@ class MessageTable(QTableWidget):
         header.resizeSection(ICON_COLUMN, ICON_COLUMN_WIDTH)
 
     def add_sent_message(self, message):
-        self._append_item(SendItem(message))
+        self._append_item(SendItem(f"Sent: {message}"))
 
     def add_received_message(self, message):
         self._append_item(ReceiveItem(message))
@@ -148,7 +148,7 @@ class MessageTable(QTableWidget):
 
 class ReceiveItem(QTableWidgetItem):
     def __init__(self, message):
-        super().__init__(f"Sent: {message}")
+        super().__init__(message)
         self.in_progress = False
 
 
@@ -166,16 +166,16 @@ class ReceiveFile(ReceiveItem):
     def __init__(self, filename):
         self.in_progress = False
         self._filename = filename
-        super().__init__(f"Queued {self._filename}...")
+        super().__init__(f"Queued: {self._filename}...")
 
     def transfer_started(self):
         self.in_progress = True
-        self.setText(f"Receiving {self._filename}...")
+        self.setText(f"Receiving: {self._filename}...")
 
     def transfer_complete(self, filename):
         self.in_progress = False
         self._filename = filename
-        self.setText(f"Received {filename}")
+        self.setText(f"Received: {filename}")
 
     def transfer_failed(self):
         self.in_progress = False
@@ -186,16 +186,16 @@ class SendFile(SendItem):
     def __init__(self, filename):
         self.in_progress = False
         self._filename = filename
-        super().__init__(f"Queued {self._filename}...")
+        super().__init__(f"Queued: {self._filename}...")
 
     def transfer_started(self):
         self.in_progress = True
-        self.setText(f"Sending {self._filename}...")
+        self.setText(f"Sending: {self._filename}...")
 
     def transfer_complete(self, filename):
         self.in_progress = False
         self._filename = filename
-        self.setText(f"Sent {filename}")
+        self.setText(f"Sent: {filename}")
 
     def transfer_failed(self):
         self.in_progress = False
