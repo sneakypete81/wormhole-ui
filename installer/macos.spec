@@ -40,7 +40,7 @@ coll = COLLECT(exe,
                name='Magic Wormhole')
 app = BUNDLE(coll,
              name='Magic Wormhole.app',
-             icon='icons/wormhole.icns',
+             icon='../wormhole_ui/resources/wormhole.icns',
              bundle_identifier=None,
              info_plist={
                  'NSPrincipalClass': 'NSApplication',
