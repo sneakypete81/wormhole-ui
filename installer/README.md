@@ -51,6 +51,12 @@ To copy files in and out of the VM:
   scp -P 2222 -r sneakypete81@127.0.0.1:~/Projects/wormhole-ui/dist/* ~/Projects/wormhole-ui/dist
 ```
 
+Before building, you will need to have a Python with Framework support:
+
+```sh
+  env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install <python_version>
+```
+
 First build the .app with PyInstaller. This must be done on a MacOS machine, ideally an old OS version such as the VM set up above.
 
 ```sh
@@ -69,7 +75,7 @@ The DMG is written to the `dist` folder.
 ## Icons
 The icons have been drawn in Inkscape and exported to various PNG sizes.
 
-Rebuild the .icns and .ico iconsets with the following:
+If the icons are changed, rebuild the .icns and .ico iconsets with the following:
 
 ```sh
   installer/build_icons.sh
