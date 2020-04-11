@@ -13,7 +13,8 @@ class UiDialog(QDialog):
         super().open()
 
     def _position_over_parent(self, parent):
-        parent_y = parent.window().pos().y()
-        parent_center = parent.window().mapToGlobal(parent.window().rect().center())
+        if parent is not None:
+            parent_y = parent.window().pos().y()
+            parent_center = parent.window().mapToGlobal(parent.window().rect().center())
 
-        self.move(parent_center.x() - self.width() / 2, parent_y)
+            self.move(parent_center.x() - self.width() / 2, parent_y)
