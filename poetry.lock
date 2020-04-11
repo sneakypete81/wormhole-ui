@@ -549,11 +549,11 @@ category = "main"
 description = "Python bindings for the Qt cross-platform application and UI framework"
 name = "pyside2"
 optional = false
-python-versions = "*"
-version = "5.13.1"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <3.9"
+version = "5.14.2"
 
 [package.dependencies]
-shiboken2 = "5.13.1"
+shiboken2 = "5.14.2"
 
 [[package]]
 category = "dev"
@@ -689,8 +689,8 @@ category = "main"
 description = "Python / C++ bindings helper module"
 name = "shiboken2"
 optional = false
-python-versions = "*"
-version = "5.13.1"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <3.9"
+version = "5.14.2"
 
 [[package]]
 category = "main"
@@ -895,8 +895,8 @@ test = ["zope.event"]
 testing = ["coverage", "nose", "zope.event"]
 
 [metadata]
-content-hash = "1454fe5f5f5ff1a30aca808a212fee998a1c0a41321057e065ee7f3e8dbc97cc"
-python-versions = "^3.6, <3.8"  # Some dependencies don't support Py3.8 yet
+content-hash = "10bf8bd147193cd60cea488e0c0ffe7b54a853c11d2381cfb0a6cdb9747e78ff"
+python-versions = "^3.6, <3.8"
 
 [metadata.files]
 altgraph = [
@@ -1080,6 +1080,9 @@ greenlet = [
     {file = "greenlet-0.4.15-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:8041e2de00e745c0e05a502d6e6db310db7faa7c979b3a5877123548a4c0b214"},
     {file = "greenlet-0.4.15-cp37-cp37m-win32.whl", hash = "sha256:81fcd96a275209ef117e9ec91f75c731fa18dcfd9ffaa1c0adbdaa3616a86043"},
     {file = "greenlet-0.4.15-cp37-cp37m-win_amd64.whl", hash = "sha256:37c9ba82bd82eb6a23c2e5acc03055c0e45697253b2393c9a50cef76a3985304"},
+    {file = "greenlet-0.4.15-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:e538b8dae561080b542b0f5af64d47ef859f22517f7eca617bb314e0e03fd7ef"},
+    {file = "greenlet-0.4.15-cp38-cp38-win32.whl", hash = "sha256:51155342eb4d6058a0ffcd98a798fe6ba21195517da97e15fca3db12ab201e6e"},
+    {file = "greenlet-0.4.15-cp38-cp38-win_amd64.whl", hash = "sha256:7457d685158522df483196b16ec648b28f8e847861adb01a55d41134e7734122"},
     {file = "greenlet-0.4.15.tar.gz", hash = "sha256:9416443e219356e3c31f1f918a91badf2e37acf297e2fa13d24d1cc2380f8fbc"},
 ]
 hkdf = [
@@ -1192,12 +1195,12 @@ pyparsing = [
     {file = "pyparsing-2.4.6.tar.gz", hash = "sha256:4c830582a84fb022400b85429791bc551f1f4871c33f23e44f353119e92f969f"},
 ]
 pyside2 = [
-    {file = "PySide2-5.13.1-5.13.1-cp27-cp27m-macosx_10_12_intel.whl", hash = "sha256:8707fac6088dbf3c7262871a8fb5bf9276500f53ef67438b16c096cd510ce2e5"},
-    {file = "PySide2-5.13.1-5.13.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:e7aa2b4aa5f47c0f26c8907a4f308bca54ad8239bcabca904906b8f4a54e596e"},
-    {file = "PySide2-5.13.1-5.13.1-cp35.cp36.cp37-abi3-macosx_10_12_intel.whl", hash = "sha256:5c52c9e1916248c16c12ae925f167e6ca2580c514c0d46fca0933df6a371d204"},
-    {file = "PySide2-5.13.1-5.13.1-cp35.cp36.cp37-abi3-manylinux1_x86_64.whl", hash = "sha256:433d8f0251ce3d7200ad5279b378165ad6babb1f10588ce7aae9df86c1e100d1"},
-    {file = "PySide2-5.13.1-5.13.1-cp35.cp36.cp37-none-win32.whl", hash = "sha256:02986ba0215691980d7b126049c9aa392ffa5174079113bc5e62684bde625cb6"},
-    {file = "PySide2-5.13.1-5.13.1-cp35.cp36.cp37-none-win_amd64.whl", hash = "sha256:8d185ba5d84a885eb9aacf25cee4efe1f8e4abff63afb6bc10e7176e475db59e"},
+    {file = "PySide2-5.14.2-5.14.2-cp27-cp27m-macosx_10_13_intel.whl", hash = "sha256:a7c5c94f925186f7cee5755477662cac40f59a27c2f9d6163c5ab4f89b1fa56a"},
+    {file = "PySide2-5.14.2-5.14.2-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:80efed294ad4f7a5fa2c7d2707ce25d5afb60269825dce21034937056edb1754"},
+    {file = "PySide2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-abi3-macosx_10_13_intel.whl", hash = "sha256:d2ada2f2236a7f1393a4e6657c4421cd99411cb99739d80dd1522e861ac1308a"},
+    {file = "PySide2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl", hash = "sha256:692fc35171ef3b58226f5ba7bc75a00b641709f94e39b98ce22f3705d478372b"},
+    {file = "PySide2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-none-win32.whl", hash = "sha256:307e58c1f327c9215d276fc7d312b3c537c72446af06230b4f130c2cc6980735"},
+    {file = "PySide2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-none-win_amd64.whl", hash = "sha256:dc43c593800ba67d8081eb26deef83c893dd7b52680bfd5193e76e3efaf4f186"},
 ]
 pytest = [
     {file = "pytest-5.4.1-py3-none-any.whl", hash = "sha256:0e5b30f5cb04e887b91b1ee519fa3d89049595f428c1db76e73bd7f17b09b172"},
@@ -1265,12 +1268,12 @@ regex = [
     {file = "regex-2020.2.20.tar.gz", hash = "sha256:9e9624440d754733eddbcd4614378c18713d2d9d0dc647cf9c72f64e39671be5"},
 ]
 shiboken2 = [
-    {file = "shiboken2-5.13.1-5.13.1-cp27-cp27m-macosx_10_12_intel.whl", hash = "sha256:f341940069fe764f2a9c3a06a9844c4c353c94227d3dbc304640f34b42c02d7a"},
-    {file = "shiboken2-5.13.1-5.13.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:dfbb1f2ea86b4ddff9e91589bc93c9b6e2702ab09285cdc151daa8096442a665"},
-    {file = "shiboken2-5.13.1-5.13.1-cp35.cp36.cp37-abi3-macosx_10_12_intel.whl", hash = "sha256:cfec94e16b289f7abca6bf7dfc88b877098653855914c9f54d6477f47c68a93b"},
-    {file = "shiboken2-5.13.1-5.13.1-cp35.cp36.cp37-abi3-manylinux1_x86_64.whl", hash = "sha256:14ca49878c8d545d1b74b0526af81e4ed5064133c682b57cabfa0ac16e7a2ccb"},
-    {file = "shiboken2-5.13.1-5.13.1-cp35.cp36.cp37-none-win32.whl", hash = "sha256:f18ccc6f1870ab3fb7087412a745dfc4275c8afb1b645b88d982a5708032f3e3"},
-    {file = "shiboken2-5.13.1-5.13.1-cp35.cp36.cp37-none-win_amd64.whl", hash = "sha256:2aa481ce1097d10f74f7d0570d7f38fa5158e49b2146ae3aae5c8c56623681b1"},
+    {file = "shiboken2-5.14.2-5.14.2-cp27-cp27m-macosx_10_13_intel.whl", hash = "sha256:e887fccaa60dbf2b6f9ce46c32fb0d36434796ef3468d742e0bdad9cfc5b0c02"},
+    {file = "shiboken2-5.14.2-5.14.2-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:4a1be8396c748b850d2b0bddc9ef3d277873d14503c83efbc34be7148c3c92fc"},
+    {file = "shiboken2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-abi3-macosx_10_13_intel.whl", hash = "sha256:1ab673cab00ac787f055f5859c6ad1e03e294c3a12247545f3b516860363b076"},
+    {file = "shiboken2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl", hash = "sha256:32fa77f9464b1fa055f2d8c1511e624dbd39a8ad13053acc08c330d5631a7788"},
+    {file = "shiboken2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-none-win32.whl", hash = "sha256:77b9bac57f7524c21a0711466dea43d4b45543f7d4ec1fc54acff9349d8296e3"},
+    {file = "shiboken2-5.14.2-5.14.2-cp35.cp36.cp37.cp38-none-win_amd64.whl", hash = "sha256:6eda654156bdcabf14dd366f7da5ab2ffcf4d3099eb437f9a22742fd3f828f6a"},
 ]
 six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
