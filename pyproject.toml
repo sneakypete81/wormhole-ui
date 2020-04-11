@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wormhole-ui"
-version = "0.1.2"
+version = "0.2.0"
 description = "UI for Magic Wormhole - get things from one computer to another safely"
 authors = ["sneakypete81 <sneakypete81@gmail.com>"]
 license = "GPL-3.0"

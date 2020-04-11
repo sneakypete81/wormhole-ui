@@ -1,5 +1,12 @@
 # Magic Wormhole UI Changelog
 
+## v0.2.0
+
+* Add application icons (#5)
+* Add transfer complete/failed icons (#1)
+* Handle reception of invalid messages
+* Refactoring and unit tests (#10)
+
 ## v0.1.2
 
 * Add MacOS installer
