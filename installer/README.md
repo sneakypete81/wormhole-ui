@@ -4,9 +4,10 @@
 
 * Update `CHANGELOG.md`
 * Update version in `pyproject.toml` and `wormhole_ui/__init__.py`.
+* Run `poetry run tox`
 * Build installers (see below)
 * Test installers
-* Commit, tag and push
+* Commit, tag, push
 * Publish to PyPI with `poetry publish`
 * Create a release on Github, including the changelog and installers
 
