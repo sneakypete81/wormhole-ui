@@ -16,7 +16,10 @@ if "twisted.internet.reactor" in sys.modules:
 
 # Importing readline (in the wormhole dependency) after initialising QApplication
 # causes segfault in Ubuntu. Importing it here to workaround this.
-import readline  # noqa: F401, E402
+try:
+    import readline  # noqa: F401, E402
+except ImportError:
+    pass
 
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
 QApplication([])
