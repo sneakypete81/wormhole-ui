@@ -16,7 +16,7 @@ Download the [Windows installer](https://github.com/sneakypete81/wormhole-ui/rel
 Download the [MacOS installer](https://github.com/sneakypete81/wormhole-ui/releases/latest/download/Magic.Wormhole.Installer.dmg).
 
 ### Linux
-Installer coming soon...
+Installer coming soon. In the meantime, see below for installing with pipx.
 
 ### From Source
 The recommended method to run from the Python source is with [pipx](https://pipxproject.github.io/pipx/):
