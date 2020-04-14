@@ -43,7 +43,6 @@ dmgbuild = { version = "^1.3.3", platform = "darwin" }
 black = { version = "^19.10b0", python = "^3.6" }
 flake8 = "^3.7.9"
 tox = "^3.14.6"
-pytest-xvfb = "^1.2.0"
 
 [build-system]
 requires = ["poetry>=0.12"]

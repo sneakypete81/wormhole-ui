@@ -232,14 +232,6 @@ mac_alias = ">=2.0.1"
 
 [[package]]
 category = "dev"
-description = "Easy to use python subprocess interface."
-name = "easyprocess"
-optional = false
-python-versions = "*"
-version = "0.2.10"
-
-[[package]]
-category = "dev"
 description = "Discover and load entry points from installed packages."
 name = "entrypoints"
 optional = false
@@ -650,29 +642,6 @@ pytest = ">=2.3"
 dev = ["pre-commit", "black"]
 
 [[package]]
-category = "dev"
-description = "A pytest plugin to run Xvfb for tests."
-name = "pytest-xvfb"
-optional = false
-python-versions = "*"
-version = "1.2.0"
-
-[package.dependencies]
-pytest = ">=2.8.1"
-pyvirtualdisplay = ">=0.2.1"
-
-[[package]]
-category = "dev"
-description = "python wrapper for Xvfb, Xephyr and Xvnc"
-name = "pyvirtualdisplay"
-optional = false
-python-versions = "*"
-version = "0.2.5"
-
-[package.dependencies]
-EasyProcess = "*"
-
-[[package]]
 category = "main"
 description = "Python for Window Extensions"
 marker = "sys_platform == \"win32\""
@@ -926,7 +895,7 @@ test = ["zope.event"]
 testing = ["coverage", "nose", "zope.event"]
 
 [metadata]
-content-hash = "a24dde94c744e2bb7a7769b9de4e6b2d7d6039c912567a647ddc03fd411ed3e8"
+content-hash = "1454fe5f5f5ff1a30aca808a212fee998a1c0a41321057e065ee7f3e8dbc97cc"
 python-versions = "^3.6, <3.8"  # Some dependencies don't support Py3.8 yet
 
 [metadata.files]
@@ -1076,10 +1045,6 @@ dmgbuild = [
 ]
 ds-store = [
     {file = "ds_store-1.1.2.tar.gz", hash = "sha256:f569659cfd66b21273c5a2405d5e1e0f54fddebf627130329f01404f271a074c"},
-]
-easyprocess = [
-    {file = "EasyProcess-0.2.10-py2.py3-none-any.whl", hash = "sha256:0f62037295e5bdbaf73b28415e712965b738c67999fd2c53aaa984db5dea40e0"},
-    {file = "EasyProcess-0.2.10.tar.gz", hash = "sha256:636b5e30222cde1e881fafc0112b35d516bce41ddee83ecbac656dec9befea1b"},
 ]
 entrypoints = [
     {file = "entrypoints-0.3-py2.py3-none-any.whl", hash = "sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19"},
@@ -1253,13 +1218,6 @@ pytest-qt = [
 pytest-twisted = [
     {file = "pytest-twisted-1.12.zip", hash = "sha256:bb9af117c5c6063d9ef20ffdf2fa297caaf57de5a687e4d3607db7b0a6f74fea"},
     {file = "pytest_twisted-1.12-py2.py3-none-any.whl", hash = "sha256:3b948221b0144a1e00c435ad89f0b99fb2aa6e19e215d3622be101ea26ff6c05"},
-]
-pytest-xvfb = [
-    {file = "pytest-xvfb-1.2.0.tar.gz", hash = "sha256:a7544ca8d0c7c40db4b40d7a417a7b071c68d6ef6bdf9700872d7a167302f979"},
-]
-pyvirtualdisplay = [
-    {file = "PyVirtualDisplay-0.2.5-py2.py3-none-any.whl", hash = "sha256:cab4ce130be34a9f62b402954451e829035616d39d7a1ba485dabbf77afb9fb4"},
-    {file = "PyVirtualDisplay-0.2.5.tar.gz", hash = "sha256:5b267c8ffc98fcbd084ba852ab4caef3f22e9362bc5d117e1697e767553eaf41"},
 ]
 pywin32 = [
     {file = "pywin32-227-cp27-cp27m-win32.whl", hash = "sha256:371fcc39416d736401f0274dd64c2302728c9e034808e37381b5e1b22be4a6b0"},
