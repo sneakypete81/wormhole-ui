@@ -1,3 +1,6 @@
+import os
+import sys
+
 from hamcrest import assert_that, calling, is_, raises
 import pytest
 from PySide2.QtCore import Qt
@@ -13,6 +16,12 @@ def dialog(mocker, qtbot):
     connect_dialog = ConnectDialog(parent=None, wormhole=wormhole)
     qtbot.addWidget(connect_dialog)
     return connect_dialog
+
+
+def test_xvfb(xvfb):
+    print(f"sys.platform={sys.platform}. DISPLAY={'DISPLAY' in os.environ}.")
+    print(f"xvfb={xvfb}")
+    assert False
 
 
 class TestOpen:
