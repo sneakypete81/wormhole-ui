@@ -25,7 +25,6 @@ class TransitProtocolPair:
         self.is_sending_file = True
 
         self._source = source_factory(id, file_path)
-        self._source.open()
 
         if not self._send_transit_handshake_complete:
             self._awaiting_transit_response = True

@@ -19,9 +19,17 @@ class TransitProtocolSender(TransitProtocolBase):
         super().__init__(wormhole, delegate, transit)
 
         self._file_sender = FileSender(transit)
+        self._send_offer_deferred = None
         self._send_file_deferred = None
 
     def send_offer(self, source):
+        self._send_offer_deferred = self._send_offer(source)
+        self._send_offer_deferred.addErrback(self._on_deferred_error)
+
+    @defer.inlineCallbacks
+    def _send_offer(self, source):
+        yield source.open()
+
         if isinstance(source, SourceFile):
             self._send_data(self._file_offer(source))
         elif isinstance(source, SourceDir):
@@ -73,5 +81,7 @@ class TransitProtocolSender(TransitProtocolBase):
         super().close()
 
         self._file_sender.close()
+        if self._send_offer_deferred is not None:
+            self._send_offer_deferred.cancel()
         if self._send_file_deferred is not None:
             self._send_file_deferred.cancel()

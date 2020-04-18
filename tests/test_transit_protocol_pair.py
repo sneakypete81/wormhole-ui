@@ -40,13 +40,6 @@ class TestSendFile(TestBase):
         assert_that(self.sender.send_offer.call_count, is_(2))
         self.sender.send_offer.assert_called_with(self.source_factory)
 
-    def test_opens_source_file(self):
-        transit = TransitProtocolPair(None, None, None)
-
-        transit.send_file(13, "test_file")
-
-        self.source_factory.open.assert_called_once()
-
 
 class TestHandleTransit(TestBase):
     def test_handles_transit_when_sending(self):

@@ -3,6 +3,8 @@ from pathlib import Path
 import tempfile
 import zipfile
 
+from twisted.internet import defer, threads
+
 from ...errors import SendFileError
 
 
@@ -43,6 +45,7 @@ class SourceFile(Source):
 
 
 class SourceDir(Source):
+    @defer.inlineCallbacks
     def open(self):
         # We're sending a directory. Create a zipfile and send that
         # instead. SpooledTemporaryFile will use RAM until our size
@@ -58,7 +61,7 @@ class SourceDir(Source):
             # AFAICT all the filetypes that STF wraps can seek
             self.file_object.seekable = lambda: True
 
-        self._build_zipfile()
+        yield threads.deferToThread(self._build_zipfile)
         self.file_object.seek(0, 2)
         self.transfer_bytes = self.file_object.tell()
         self.file_object.seek(0, 0)
