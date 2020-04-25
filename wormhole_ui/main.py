@@ -22,6 +22,8 @@ except ImportError:
     pass
 
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
+QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+
 QApplication([])
 qt5reactor.install()
 
