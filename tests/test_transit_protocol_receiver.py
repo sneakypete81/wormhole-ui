@@ -68,8 +68,8 @@ class TestSendTransit(TestBase):
         assert_that(kwargs["traceback"], starts_with("Traceback"))
 
 
-class TestHandleOffer(TestBase):
-    def test_offer_is_parsed(self, mocker):
+class TestHandleFileOffer(TestBase):
+    def test_file_offer_is_parsed(self):
         transit_receiver = TransitProtocolReceiver(None, self.wormhole, None)
         result = transit_receiver.handle_offer(
             {"file": {"filename": "test_file", "filesize": 42}}
@@ -78,7 +78,42 @@ class TestHandleOffer(TestBase):
         assert_that(result.name, is_("test_file"))
         assert_that(result.final_bytes, is_(42))
 
-    def test_invalid_offer_raises_exception(self, mocker):
+    def test_directory_offer_is_parsed(self):
+        transit_receiver = TransitProtocolReceiver(None, self.wormhole, None)
+        result = transit_receiver.handle_offer(
+            {
+                "directory": {
+                    "mode": "zipfile/deflated",
+                    "dirname": "test_dir",
+                    "zipsize": 24,
+                    "numbytes": 42,
+                    "numfiles": 9,
+                },
+            },
+        )
+
+        assert_that(result.name, is_("test_dir"))
+        assert_that(result.final_bytes, is_(24))
+
+    def test_invalid_directory_mode_raises_exception(self):
+        transit_receiver = TransitProtocolReceiver(None, self.wormhole, None)
+
+        offer = {
+            "directory": {
+                "mode": "invalid/mode",
+                "dirname": "test_dir",
+                "zipsize": 24,
+                "numbytes": 42,
+                "numfiles": 9,
+            },
+        }
+
+        assert_that(
+            calling(transit_receiver.handle_offer).with_args(offer),
+            raises(RespondError),
+        )
+
+    def test_invalid_offer_raises_exception(self):
         transit_receiver = TransitProtocolReceiver(None, self.wormhole, None)
 
         assert_that(
