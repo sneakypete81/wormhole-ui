@@ -12,7 +12,7 @@ def source_factory(id, path):
     if Path(path).is_file():
         return SourceFile(id, path)
     elif Path(path).is_dir():
-        return SourceDir(id, path)
+        return SourceDirectory(id, path)
 
     raise SendFileError("Can only send files or directories")
 
@@ -44,7 +44,7 @@ class SourceFile(Source):
         self.num_files = 1
 
 
-class SourceDir(Source):
+class SourceDirectory(Source):
     @defer.inlineCallbacks
     def open(self):
         # We're sending a directory. Create a zipfile and send that

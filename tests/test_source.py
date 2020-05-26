@@ -5,7 +5,7 @@ from hamcrest import assert_that, is_, ends_with, has_length
 import pytest
 from twisted.internet import defer
 
-from wormhole_ui.protocol.transit.source import SourceDir, SourceFile
+from wormhole_ui.protocol.transit.source import SourceDirectory, SourceFile
 
 
 @pytest.fixture
@@ -41,16 +41,16 @@ class TestSourceFile:
         assert_that(source_file.final_bytes, is_(33))
 
 
-class TestSourceDir:
+class TestSourceDirectory:
     def test_attributes_are_set(self, test_dir_path):
-        source_dir = SourceDir(13, test_dir_path)
+        source_dir = SourceDirectory(13, test_dir_path)
 
         assert_that(source_dir.id, is_(13))
         assert_that(source_dir.name, is_("test_files"))
 
     @defer.inlineCallbacks
     def test_open_creates_a_zipfile_object(self, test_dir_path):
-        source_dir = SourceDir(13, test_dir_path)
+        source_dir = SourceDirectory(13, test_dir_path)
 
         yield source_dir.open()
 
@@ -59,7 +59,7 @@ class TestSourceDir:
 
     @defer.inlineCallbacks
     def test_open_gets_file_size(self, test_dir_path):
-        source_dir = SourceDir(13, test_dir_path)
+        source_dir = SourceDirectory(13, test_dir_path)
 
         yield source_dir.open()
 
@@ -68,7 +68,7 @@ class TestSourceDir:
 
     @defer.inlineCallbacks
     def test_open_zips_directory_contents(self, test_dir_path):
-        source_dir = SourceDir(13, test_dir_path)
+        source_dir = SourceDirectory(13, test_dir_path)
 
         yield source_dir.open()
 

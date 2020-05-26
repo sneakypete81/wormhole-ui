@@ -4,7 +4,7 @@ from twisted.internet import defer
 
 from wormhole_ui.errors import SendFileError
 from wormhole_ui.protocol.transit.transit_protocol_sender import TransitProtocolSender
-from wormhole_ui.protocol.transit.source import SourceDir, SourceFile
+from wormhole_ui.protocol.transit.source import SourceDirectory, SourceFile
 
 
 class TestBase:
@@ -84,7 +84,7 @@ class TestSendOffer(TestBase):
 
     def test_dir_offer_is_sent(self, mocker):
         source_dir = mocker.Mock(
-            spec=SourceDir, final_bytes=42, transfer_bytes=24, num_files=2
+            spec=SourceDirectory, final_bytes=42, transfer_bytes=24, num_files=2
         )
         source_dir.name = "test_dir"
         source_dir.open.return_value = defer.Deferred()

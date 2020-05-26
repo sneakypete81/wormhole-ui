@@ -7,7 +7,7 @@ from wormhole.transit import TransitSender
 from ...errors import SendFileError
 from .file_sender import FileSender
 from .progress import Progress
-from .source import SourceDir, SourceFile
+from .source import SourceDirectory, SourceFile
 from .transit_protocol_base import TransitProtocolBase
 
 
@@ -32,7 +32,7 @@ class TransitProtocolSender(TransitProtocolBase):
 
         if isinstance(source, SourceFile):
             self._send_data(self._file_offer(source))
-        elif isinstance(source, SourceDir):
+        elif isinstance(source, SourceDirectory):
             self._send_data(self._dir_offer(source))
         else:
             raise SendFileError("Unknown source file type")
