@@ -4,7 +4,7 @@ from twisted.internet import defer
 from wormhole.cli import public_relay
 from wormhole.transit import TransitReceiver
 
-from .dest_file import DestFile
+from .dest import DestFile
 from ...errors import (
     OfferError,
     RespondError,
@@ -26,12 +26,24 @@ class TransitProtocolReceiver(TransitProtocolBase):
         self._receive_file_deferred = None
 
     def handle_offer(self, offer):
-        if "file" not in offer:
-            raise RespondError(OfferError(f"Unknown offer: {offer}"))
+        if "file" in offer:
+            return self._handle_file_offer(offer["file"])
+        elif "directory" in offer:
+            return self._handle_directory_offer(offer["directory"])
 
-        filename = offer["file"]["filename"]
-        filesize = offer["file"]["filesize"]
-        return DestFile(filename, filesize)
+        raise RespondError(OfferError(f"Unknown offer: {offer}"))
+
+    @staticmethod
+    def _handle_file_offer(file_offer):
+        return DestFile(file_offer["filename"], file_offer["filesize"])
+
+    @staticmethod
+    def _handle_directory_offer(directory_offer):
+        mode = directory_offer["mode"]
+        if mode != "zipfile/deflated":
+            raise RespondError(OfferError(f"Unsupported mode: {mode}"))
+
+        return DestFile(directory_offer["dirname"], directory_offer["zipsize"])
 
     def receive_file(self, dest_file, receive_finished_handler):
         self._send_data({"answer": {"file_ack": "ok"}})

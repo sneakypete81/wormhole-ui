@@ -54,6 +54,7 @@ class MainWindow(QMainWindow):
         self.message_edit.returnPressed.connect(self.send_message_button.clicked)
         self.send_message_button.clicked.connect(self._on_send_message_button)
         self.send_files_button.clicked.connect(self._on_send_files_button)
+        self.send_folder_button.clicked.connect(self._on_send_folder_button)
         self.message_table.send_file.connect(self._on_send_file)
 
         self.connect_dialog.rejected.connect(self.close)
@@ -89,10 +90,22 @@ class MainWindow(QMainWindow):
         dialog.filesSelected.connect(self._on_send_files_selected)
         dialog.open()
 
+    @Slot()
+    def _on_send_folder_button(self):
+        dialog = QFileDialog(self, "Send")
+        dialog.setFileMode(QFileDialog.Directory)
+        dialog.setOption(QFileDialog.ShowDirsOnly)
+        dialog.fileSelected.connect(self._on_send_folder_selected)
+        dialog.open()
+
     @Slot(str)
     def _on_send_files_selected(self, filepaths):
         for filepath in filepaths:
             self.message_table.send_file_pending(filepath)
+
+    @Slot(str)
+    def _on_send_folder_selected(self, folderpath):
+        self.message_table.send_file_pending(folderpath)
 
     @Slot(int, str)
     def _on_send_file(self, id, filepath):

@@ -109,6 +109,7 @@ class MessageTable(QTableWidget):
 
         if isinstance(self.cellWidget(id, ICON_COLUMN), QProgressBar):
             self.cellWidget(id, ICON_COLUMN).setValue(percent)
+            self.cellWidget(id, ICON_COLUMN).update()
 
     def _draw_icon(self, id, svg_filename):
         svg = QSvgWidget(str(RESOURCES_PATH / svg_filename))

@@ -1,6 +1,6 @@
 import logging
 
-from .source_file import SourceFile
+from .source import source_factory
 from .transit_protocol_sender import TransitProtocolSender
 from .transit_protocol_receiver import TransitProtocolReceiver
 
@@ -10,7 +10,7 @@ class TransitProtocolPair:
         self._receiver = TransitProtocolReceiver(reactor, wormhole, delegate)
         self._sender = TransitProtocolSender(reactor, wormhole, delegate)
 
-        self._source_file = None
+        self._source = None
         self._dest_file = None
 
         self._send_transit_handshake_complete = False
@@ -24,14 +24,13 @@ class TransitProtocolPair:
         assert not self.is_sending_file
         self.is_sending_file = True
 
-        self._source_file = SourceFile(id, file_path)
-        self._source_file.open()
+        self._source = source_factory(id, file_path)
 
         if not self._send_transit_handshake_complete:
             self._awaiting_transit_response = True
             self._sender.send_transit()
         else:
-            self._sender.send_offer(self._source_file)
+            self._sender.send_offer(self._source)
 
     def handle_transit(self, transit_message):
         logging.debug("TransitProtocolPair::handle_transit")
@@ -45,7 +44,7 @@ class TransitProtocolPair:
                 self._sender.handle_transit(transit_message)
 
             self._awaiting_transit_response = False
-            self._sender.send_offer(self._source_file)
+            self._sender.send_offer(self._source)
 
         else:
             # We haven't sent a transit message, so this is for the receiver
@@ -63,9 +62,9 @@ class TransitProtocolPair:
 
         def on_send_finished():
             self.is_sending_file = False
-            self._source_file = None
+            self._source = None
 
-        self._sender.send_file(self._source_file, on_send_finished)
+        self._sender.send_file(self._source, on_send_finished)
 
     def handle_offer(self, offer):
         logging.debug("TransitProtocolPair::handle_offer")
@@ -89,7 +88,7 @@ class TransitProtocolPair:
         self._receiver.receive_file(self._dest_file, on_receive_finished)
 
     def close(self):
-        self._source_file = None
+        self._source = None
         self._dest_file = None
         self._send_transit_handshake_complete = False
         self._receive_transit_handshake_complete = False
