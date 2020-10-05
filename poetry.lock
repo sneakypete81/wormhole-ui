@@ -285,8 +285,11 @@ category = "main"
 description = "Python humanize utilities"
 name = "humanize"
 optional = false
-python-versions = ">=3.5"
-version = "2.4.0"
+python-versions = ">=3.6"
+version = "3.0.1"
+
+[package.dependencies]
+setuptools = "*"
 
 [package.extras]
 tests = ["freezegun", "pytest", "pytest-cov"]
@@ -894,7 +897,8 @@ test = ["zope.event"]
 testing = ["coverage", "nose", "zope.event"]
 
 [metadata]
-content-hash = "219a9f332cb1d96f605b536c7b597028d7700fa34c562bc8df30f77c09e52550"
+content-hash = "12b5e64008096f29b48d2a717dfd36ef35b9b879e4287151ad28be3ea4555663"
+lock-version = "1.0"
 python-versions = "^3.6, <3.8"
 
 [metadata.files]
@@ -1084,8 +1088,8 @@ hkdf = [
     {file = "hkdf-0.0.3.tar.gz", hash = "sha256:622a31c634bc185581530a4b44ffb731ed208acf4614f9c795bdd70e77991dca"},
 ]
 humanize = [
-    {file = "humanize-2.4.0-py3-none-any.whl", hash = "sha256:07dd1293bac6c77daa5ccdc22c0b41b2315bee0e339a9f035ba86a9f1a272002"},
-    {file = "humanize-2.4.0.tar.gz", hash = "sha256:42ae7d54b398c01bd100847f6cb0fc9e381c21be8ad3f8e2929135e48dbff026"},
+    {file = "humanize-3.0.1-py3-none-any.whl", hash = "sha256:b67f41ad9689bd8539fe02695385989d8c789019a90c450d3d2f8891e9e4bb32"},
+    {file = "humanize-3.0.1.tar.gz", hash = "sha256:8ff8f292c9bf52bbefdc620410e7defd1c95e7eeb1a5cfc2859aaea4b1877ff5"},
 ]
 hyperlink = [
     {file = "hyperlink-19.0.0-py2.py3-none-any.whl", hash = "sha256:ab4a308feb039b04f855a020a6eda3b18ca5a68e6d8f8c899cbe9e653721d04f"},
