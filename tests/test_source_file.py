@@ -30,5 +30,5 @@ class TestSourceFile:
 
         source_file.open()
 
-        assert_that(source_file.transfer_bytes, is_(33))
-        assert_that(source_file.final_bytes, is_(33))
+        assert_that(source_file.transfer_bytes, is_(32))
+        assert_that(source_file.final_bytes, is_(32))
