@@ -17,7 +17,8 @@ from .transit_protocol_base import TransitProtocolBase
 class TransitProtocolReceiver(TransitProtocolBase):
     def __init__(self, reactor, wormhole, delegate):
         transit = TransitReceiver(
-            transit_relay=public_relay.TRANSIT_RELAY, reactor=reactor,
+            transit_relay=public_relay.TRANSIT_RELAY,
+            reactor=reactor,
         )
         super().__init__(wormhole, delegate, transit)
 
