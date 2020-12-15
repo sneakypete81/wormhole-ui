@@ -635,11 +635,11 @@ doc = ["sphinx", "sphinx-rtd-theme"]
 
 [[package]]
 name = "pytest-twisted"
-version = "1.12"
-description = "A twisted plugin for py.test."
+version = "1.13.2"
+description = "A twisted plugin for pytest."
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 
 [package.dependencies]
 decorator = "*"
@@ -648,6 +648,8 @@ pytest = ">=2.3"
 
 [package.extras]
 dev = ["pre-commit", "black"]
+pyqt5 = ["qt5reactor[pyqt5] (>=0.6.2)"]
+pyside2 = ["qt5reactor[pyside2] (>=0.6.3)"]
 
 [[package]]
 name = "pywin32"
@@ -900,7 +902,7 @@ testing = ["coverage", "nose", "zope.event"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6, <3.8"
-content-hash = "79a7a4ff8795323a059c7d7ebb0e8c95d95c916bcb13c9dbe3c2fb40ee5dc27c"
+content-hash = "a55d2534bc5eaf36bb2c6507da6b4c48ecf3e7c0188c761ab34075e6ffc99116"
 
 [metadata.files]
 altgraph = [
@@ -1257,8 +1259,8 @@ pytest-qt = [
     {file = "pytest_qt-3.3.0-py2.py3-none-any.whl", hash = "sha256:5f8928288f50489d83f5d38caf2d7d9fcd6e7cf769947902caa4661dc7c851e3"},
 ]
 pytest-twisted = [
-    {file = "pytest-twisted-1.12.zip", hash = "sha256:bb9af117c5c6063d9ef20ffdf2fa297caaf57de5a687e4d3607db7b0a6f74fea"},
-    {file = "pytest_twisted-1.12-py2.py3-none-any.whl", hash = "sha256:3b948221b0144a1e00c435ad89f0b99fb2aa6e19e215d3622be101ea26ff6c05"},
+    {file = "pytest-twisted-1.13.2.zip", hash = "sha256:cee2320becc5625050ab221b8f38533e636651a24644612f4726891fdf1f1847"},
+    {file = "pytest_twisted-1.13.2-py2.py3-none-any.whl", hash = "sha256:1a9d1b53001bd5b866fd49038c4047acfd885213ad80070838a70cf2136fc63d"},
 ]
 pywin32 = [
     {file = "pywin32-227-cp27-cp27m-win32.whl", hash = "sha256:371fcc39416d736401f0274dd64c2302728c9e034808e37381b5e1b22be4a6b0"},

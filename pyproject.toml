@@ -32,7 +32,7 @@ pytest = "^6.0"
 pytest-cov = "^2.8.1"
 pytest-mock = "^3.1.0"
 pytest-qt = "^3.3.0"
-pytest-twisted = "^1.12"
+pytest-twisted = "^1.13"
 
 pyinstaller = "^3.5"
 pywin32-ctypes = { version = "^0.2.0", platform = "win32" }
