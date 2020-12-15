@@ -29,7 +29,7 @@ qt5reactor = "^0.6"
 humanize = "3.2.0" # Pinned to avoid MacOS build issue https://github.com/sneakypete81/wormhole-ui/issues/27
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
-pytest-cov = "^2.8.1"
+pytest-cov = "^2.10.1"
 pytest-mock = "^3.4.0"
 pytest-qt = "^3.3.0"
 pytest-twisted = "^1.13"
