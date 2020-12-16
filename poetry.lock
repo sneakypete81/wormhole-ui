@@ -678,7 +678,7 @@ python-versions = "*"
 
 [[package]]
 name = "qt5reactor"
-version = "0.6"
+version = "0.6.3"
 description = "Twisted Qt Integration"
 category = "main"
 optional = false
@@ -689,7 +689,7 @@ twisted = "*"
 
 [package.extras]
 pyqt5 = ["pyqt5"]
-pyside2 = ["pyside2"]
+pyside2 = ["pyside2 (!=5.15.0)"]
 test = ["coverage", "pytest", "pytest-cov", "pytest-twisted", "tox (>=3.1)"]
 
 [[package]]
@@ -1302,8 +1302,8 @@ pywin32-ctypes = [
     {file = "pywin32_ctypes-0.2.0-py2.py3-none-any.whl", hash = "sha256:9dc2d991b3479cc2df15930958b674a48a227d5361d413827a4cfd0b5876fc98"},
 ]
 qt5reactor = [
-    {file = "qt5reactor-0.6-py3-none-any.whl", hash = "sha256:e12400d3a50b971e2e58eb9fa5000fa33f3379090b92e0a5f0f8ac680bdbdf71"},
-    {file = "qt5reactor-0.6.tar.gz", hash = "sha256:b375af4ac359035499c98d3bc9a77baed0617a9216121abfa9a344bdf8d9981f"},
+    {file = "qt5reactor-0.6.3-py3-none-any.whl", hash = "sha256:3f01afa5874f51fbfe3cfb7a5fc4cbfcf7b65ddb603824daf145e44c370a225b"},
+    {file = "qt5reactor-0.6.3.tar.gz", hash = "sha256:c3470a8a25d9a339f9ca6243502a9b2277f181d772b7acbff551d5bc363b7572"},
 ]
 regex = [
     {file = "regex-2020.2.20-cp27-cp27m-win32.whl", hash = "sha256:99272d6b6a68c7ae4391908fc15f6b8c9a6c345a46b632d7fdb7ef6c883a2bbb"},
