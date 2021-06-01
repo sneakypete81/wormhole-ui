@@ -38,7 +38,7 @@ pyinstaller = "^3.5"
 pywin32-ctypes = { version = "^0.2.0", platform = "win32" }
 pefile = { version = "^2019.4.18", platform = "win32" }
 macholib = { version = "^1.13", platform = "darwin" }
-dmgbuild = { version = "^1.3.3", platform = "darwin" }
+dmgbuild = { version = "^1.5.2", platform = "darwin" }
 
 black = { version = "^20.8b1", python = "^3.6" }
 flake8 = "^3.8.4"
