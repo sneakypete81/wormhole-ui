@@ -207,7 +207,7 @@ python-versions = "*"
 
 [[package]]
 name = "dmgbuild"
-version = "1.3.3"
+version = "1.5.2"
 description = "macOS command line utility to build disk images"
 category = "dev"
 optional = false
@@ -919,7 +919,7 @@ testing = ["coverage", "nose", "zope.event"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6, <3.8"
-content-hash = "0ba537766ba019ceef02618f701c9d4c60ef2b2c6c5e56780be846597f1f9fdb"
+content-hash = "35517df1ea0076052537eacd41e1ec32a324f9a5c58fe9559d6e0e49ab38b8fc"
 
 [metadata.files]
 altgraph = [
@@ -1068,7 +1068,7 @@ distlib = [
     {file = "distlib-0.3.0.zip", hash = "sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21"},
 ]
 dmgbuild = [
-    {file = "dmgbuild-1.3.3.tar.gz", hash = "sha256:2004a3a304bd29ac541af990a2b1d531b82c49f9465dbbf33e5b30efc48b620d"},
+    {file = "dmgbuild-1.5.2.tar.gz", hash = "sha256:65bfb7c267cb9475cb52a32c04779e1cec12dfb9bcb7d02cf2b6bee5faf088f4"},
 ]
 ds-store = [
     {file = "ds_store-1.1.2.tar.gz", hash = "sha256:f569659cfd66b21273c5a2405d5e1e0f54fddebf627130329f01404f271a074c"},
