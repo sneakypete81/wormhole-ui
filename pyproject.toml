@@ -34,7 +34,7 @@ pytest-mock = "^3.4.0"
 pytest-qt = "^3.3.0"
 pytest-twisted = "^1.13"
 
-pyinstaller = "^3.5"
+pyinstaller = "^4.5"
 pywin32-ctypes = { version = "^0.2.0", platform = "win32" }
 pefile = { version = "^2019.4.18", platform = "win32" }
 macholib = { version = "^1.13", platform = "darwin" }
